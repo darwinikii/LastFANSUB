@@ -1,8 +1,8 @@
 import fs from 'fs'
 
 export async function GET(req, { params }) {
-    var volumes = fs.readdirSync("./data/" + params.id + "/volumes/")
-    var chapters = fs.readdirSync("./data/" + params.id + "/volumes/" + volumes[0] + "/chapters/")
+    var api = await fetch(req.nextUrl.origin + "/api/novel/" + params.id + "/volumes")
+    api = (await api.json())
 
-    return Response.redirect(req.nextUrl.origin + "/novel/" + params.id + "/volume/" + volumes[0] + "/chapter/" + chapters[0].split(".")[0])
+    return Response.redirect(req.nextUrl.origin + "/novel/" + params.id + "/volume/" + api.basicList[0].split("-")[0] + "/chapter/" + api.basicList[0].split("-")[1])
 }

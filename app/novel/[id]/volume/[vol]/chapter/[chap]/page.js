@@ -82,7 +82,7 @@ export default function Page({ params }) {
             </a>
 
             <div className=''>
-              <select id="chapterSelect" onChange={handleOnChange} class="bg-zinc-800/30 dark:border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-neutral-800 dark:placeholder-gray-900 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select id="chapterSelect" onChange={handleOnChange} className="bg-zinc-800/30 dark:border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-neutral-800 dark:placeholder-gray-900 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 {list}
               </select>
             </div>
