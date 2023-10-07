@@ -11,7 +11,7 @@ import { createElement } from 'react';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page({ params }) {
-  function retrieveData(url, defaultData) {
+  function useRetrieveData(url, defaultData) {
     var { data, error, isLoading } = useSWR(url, fetcher);
     if (!data || isLoading) data = defaultData
 
@@ -19,13 +19,13 @@ export default function Page({ params }) {
   }
   const router = useRouter();
 
-  var data = retrieveData('/api/novel/' + params.id + "/volumes/" + params.vol + "/chapters/" + params.chap, {
+  var data = useRetrieveData('/api/novel/' + params.id + "/volumes/" + params.vol + "/chapters/" + params.chap, {
     id: undefined,
     name: undefined,
     markdown: undefined
   })
 
-  var chapters = retrieveData('/api/novel/' + params.id + '/volumes/', { basicList: [], chapterList: [] })
+  var chapters = useRetrieveData('/api/novel/' + params.id + '/volumes/', { basicList: [], chapterList: [] })
 
   function handleOnChange(e) {
     var elm = e.target.options[e.target.selectedIndex]

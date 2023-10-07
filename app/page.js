@@ -7,7 +7,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page() {
 
-  function getData(type) {
+  function useData(type) {
     var { data, error, isLoading } = useSWR('/api/novel/' + type, fetcher);
     if (!data || isLoading) data = { novels: [] }
 
@@ -32,8 +32,8 @@ export default function Page() {
     return list
   }
 
-  var newlyAdded = getData("newlyAdded")
-  var suggest = getData("suggest")
+  var newlyAdded = useData("newlyAdded")
+  var suggest = useData("suggest")
   
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
