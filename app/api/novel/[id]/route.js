@@ -1,7 +1,9 @@
+import { notFound } from 'next/navigation'
 import fs from "fs"
 
 export async function GET(req, { params }) {
   if (params.id == undefined) return
+  if (!fs.existsSync("./data/" + params.id + "/data.json")) return notFound()
   var novel = JSON.parse(fs.readFileSync("./data/" + params.id + "/data.json"))
   var volumes = fs.readdirSync("./data/" + params.id + "/volumes/")
 
