@@ -1,55 +1,49 @@
 "use client";
+import { useRouter } from "next/navigation";
+import Nav from "/components/Nav"
 import NovelCard from "/components/NovelCard"
-import Nav from "../components/Nav"
+import Image from 'next/image'
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function Page() {
+export default function Page({ searchParams }) {
+  var { data, error } = useSWR('/api/novel/search?text=' + searchParams["q"], fetcher);
 
-  function getData(type) {
-    var { data, error, isLoading } = useSWR('/api/novel/' + type, fetcher);
-    if (!data || isLoading) data = { novels: [] }
+  const router = useRouter()
+  
 
-    var list = []
-    data.novels.forEach(element => {
-      list.push(NovelCard({
-        name: element.name,
-        image: element.image,
-        id: element.id,
-        type: element.type
-      }))
-    });
-
-    for (let index = 0; list.length < 4; index++) {
-      list.push(NovelCard({
-        name: "",
-        image: "",
-        className: "invisible"
-      }))
-    }
-
-    return list
+  if (searchParams["q"] == null) {
+    router.push("/")
   }
 
-  var newlyAdded = getData("newlyAdded")
-  var suggest = getData("suggest")
-  
+  if (data == undefined) data = []
+
+  var list = []
+  data.forEach(element => {
+    list.push(NovelCard({
+      name: element.name,
+      image: element.image,
+      id: element.id,
+      type: element.type
+    }))
+  });
+
+  for (let index = 0; list.length < 4; index++) {
+    list.push(NovelCard({
+      name: "",
+      image: "",
+      className: "invisible"
+    }))
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Nav className='z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex'/>
 
-      <h2 className="mt-10 mb-5 text-4xl font-semibold">
-          Yeni Eklenenler
-      </h2>
-      <div className="mb-5 m-50 grid grid-cols-4 border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        {newlyAdded}
-      </div>
-      <h2 className="mt-2 mb-5 text-4xl font-semibold">
-          Önerilenler
-      </h2>
-      <div className="mb-10 m-50 grid grid-cols-4 border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        {suggest}
+      <div className="mt-10 mb-10 m-50 grid grid-cols-4 border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
+        {list}
+
       </div>
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
