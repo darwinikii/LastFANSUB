@@ -5,6 +5,7 @@ export async function GET(req, { params }) {
   var basicList = []
 
   var volumes = fs.readdirSync("./data/" + params.id + "/volumes")
+  volumes.sort(function(a, b){return a - b})
 
   volumes.forEach((volume) => {
     var chapters = fs.readdirSync("./data/" + params.id + "/volumes/" + volume + "/chapters")
