@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.text-2xs {
+  font-size: 0.6rem;
+  line-height: 0.75rem;
+}

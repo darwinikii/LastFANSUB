@@ -24,6 +24,7 @@ export default function ChapterList({ className, id, vol }) {
 
   data.chapterList.forEach((element, index) => {
     var e = createElement("li", {
+      key: data.basicList[index],
       volume: data.basicList[index].split("-")[0],
       chapter: data.basicList[index].split("-")[1]
     }, element)
@@ -37,7 +38,7 @@ export default function ChapterList({ className, id, vol }) {
   });
 
   return (
-        <ul class="list-disc ml-4">
+        <ul className="list-disc ml-4">
             {list}
         </ul>
   )
