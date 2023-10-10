@@ -35,13 +35,13 @@ export default function Page() {
         <h2 className="mt-10 mb-5 text-4xl font-semibold">
           Yeni Eklenenler
         </h2>
-        <div className="mb-5 m-50 grid grid-cols-2 lg:grid-cols-4 border-gray-300 bg-gradient-to-b from-zinc-200 p-2 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit rounded-xl border bg-gray-200 dark:bg-zinc-800/30">
+        <div className="mb-5 m-50 grid grid-cols-2 lg:grid-cols-4 border-gray-300 from-zinc-200 p-2 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border bg-gray-200 bg-zinc-800/30">
           {newlyAdded}
         </div>
         <h2 className="mt-2 mb-5 text-4xl font-semibold">
             Önerilenler
         </h2>
-        <div className="mb-5 m-50 grid grid-cols-2 lg:grid-cols-4 border-gray-300 bg-gradient-to-b from-zinc-200 p-2 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit rounded-xl border bg-gray-200 dark:bg-zinc-800/30">
+        <div className="mb-5 m-50 grid grid-cols-2 lg:grid-cols-4 border-gray-300 from-zinc-200 p-2 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border bg-gray-200 bg-zinc-800/30">
           {suggest}
         </div>
       </div>

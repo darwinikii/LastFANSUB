@@ -68,10 +68,10 @@ export default function Page({ params }) {
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
       <Nav className='z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex'/>
 
-      <div className="w-full lg:max-w-4xl mt-10 flex justify-around border-gray-300 before:-z-20 bg-gradient-to-b from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
+      <div className="w-full lg:max-w-4xl mt-10 flex justify-around border-gray-300 before:-z-20 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
             <a
               onClick={handlePrev}
-              className="hidden lg:flex items-center top-2 bottom-2 absolute left-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="hidden lg:flex items-center top-2 bottom-2 absolute left-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className={`text-xl font-semibold`}>
                 <span className="inline-block transition-transform group-hover:-translate-x-1 motion-reduce:transform-none">
@@ -82,14 +82,14 @@ export default function Page({ params }) {
             </a>
 
             <div className=''>
-              <select id="chapterSelect" onChange={handleOnChange} className="bg-zinc-800/30 dark:border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-neutral-800 dark:placeholder-gray-900 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select id="chapterSelect" onChange={handleOnChange} className="bg-zinc-800/30 border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-neutral-800 placeholder-gray-900 text-white focus:ring-blue-500 focus:border-blue-500">
                 {list}
               </select>
             </div>
 
             <a
               onClick={handleNext}
-              className="hidden lg:flex items-center top-2 bottom-2 absolute right-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="hidden lg:flex items-center top-2 bottom-2 absolute right-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className={`text-xl font-semibold`}>
                 Sonraki{' '}
@@ -99,10 +99,10 @@ export default function Page({ params }) {
               </h2>
             </a>
       </div>
-      <div className="block lg:hidden w-full mt-2 flex justify-around border-gray-300 before:-z-20 bg-gradient-to-b from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+      <div className="block lg:hidden w-full mt-2 flex justify-around border-gray-300 before:-z-20 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
             <a
               onClick={handlePrev}
-              className="w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className="text-xl font-semibold">
                 <span className="inline-block transition-transform group-hover:-translate-x-1 motion-reduce:transform-none">
@@ -114,7 +114,7 @@ export default function Page({ params }) {
 
             <a
               onClick={handleNext}
-              className="justify-end w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="justify-end w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className="text-xl font-semibold">
                 Sonraki{' '}
@@ -125,16 +125,16 @@ export default function Page({ params }) {
             </a>
       </div>
 
-      <div className="max-w-4xl mt-10 mb-2 m-50 border-gray-300 bg-gradient-to-b from-zinc-200 p-2 lg:pb-6 lg:pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
+      <div className="max-w-4xl mt-10 mb-2 m-50 border-gray-300 from-zinc-200 p-2 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
         <Markdown className='markdown' remarkPlugins={[remarkGfm]}>
             { data.markdown }
         </Markdown>
       </div>
 
-      <div className="w-full lg:max-w-4xl mt-2 flex justify-around border-gray-300 before:-z-20 bg-gradient-to-b from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
+      <div className="w-full lg:max-w-4xl mt-2 flex justify-around border-gray-300 before:-z-20 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
             <a
               onClick={handlePrev}
-              className="hidden lg:flex items-center top-2 bottom-2 absolute left-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="hidden lg:flex items-center top-2 bottom-2 absolute left-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className={`text-xl font-semibold`}>
                 <span className="inline-block transition-transform group-hover:-translate-x-1 motion-reduce:transform-none">
@@ -145,14 +145,14 @@ export default function Page({ params }) {
             </a>
 
             <div className=''>
-              <select onChange={handleOnChange} className="bg-zinc-800/30 dark:border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-neutral-800 dark:placeholder-gray-900 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select onChange={handleOnChange} className="bg-zinc-800/30 border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-neutral-800 placeholder-gray-900 text-white focus:ring-blue-500 focus:border-blue-500">
                 {list}
               </select>
             </div>
 
             <a
               onClick={handleNext}
-              className="hidden lg:flex items-center top-2 bottom-2 absolute right-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="hidden lg:flex items-center top-2 bottom-2 absolute right-2 inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className={`text-xl font-semibold`}>
                 Sonraki{' '}
@@ -162,10 +162,10 @@ export default function Page({ params }) {
               </h2>
             </a>
       </div>
-      <div className="block lg:hidden w-full mt-2 flex justify-around border-gray-300 before:-z-20 bg-gradient-to-b from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+      <div className="block lg:hidden w-full mt-2 flex justify-around border-gray-300 before:-z-20 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
             <a
               onClick={handlePrev}
-              className="w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className="text-xl font-semibold">
                 <span className="inline-block transition-transform group-hover:-translate-x-1 motion-reduce:transform-none">
@@ -177,7 +177,7 @@ export default function Page({ params }) {
 
             <a
               onClick={handleNext}
-              className="justify-end w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:dark:bg-neutral-800/30"
+              className="justify-end w-full block lg:hidden inline-flex cursor-pointer group rounded-lg border border-transparent px-4 py-3 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className="text-xl font-semibold">
                 Sonraki{' '}

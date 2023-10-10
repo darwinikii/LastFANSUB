@@ -30,7 +30,7 @@ export default function Page({ searchParams }) {
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
       <Nav className='z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex'/>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 border-gray-300 bg-gradient-to-b from-zinc-200 p-2 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit rounded-xl border bg-gray-200 dark:bg-zinc-800/30">
+      <div className="grid grid-cols-2 lg:grid-cols-4 border-gray-300 from-zinc-200 p-2 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border bg-gray-200 bg-zinc-800/30">
         {list}
       </div>
       
