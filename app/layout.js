@@ -2,7 +2,7 @@ import './globals.css'
 import Script from 'next/script'
 import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], preload: true })
 
 export const metadata = {
   title: 'LastFANSUB',
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <Script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558' crossOrigin='anonymous'></Script>
       </head>
       <body className={inter.className}>
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM8MK24C" height="0" width="0" className='hidden'></iframe></noscript>
+        <noscript>{<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM8MK24C" height="0" width="0" className='hidden'></iframe>}</noscript>
         {children}
       </body>
     </html>

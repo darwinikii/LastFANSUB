@@ -1,8 +1,9 @@
 "use client";
-import NovelCard from "/components/NovelCard"
-import Nav from "../components/Nav"
 import useSWR from 'swr';
+import dynamic from 'next/dynamic'
 
+const NovelCard = dynamic(() => import('/components/NovelCard'))
+const Nav = dynamic(() => import('/components/Nav'))
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page() {
@@ -11,15 +12,15 @@ export default function Page() {
     var { data, error, isLoading } = useSWR('/api/novel/' + type, fetcher);
     if (!data || isLoading) data = { novels: [] }
 
-    var list = []
-    data.novels.forEach(element => {
-      list.push(NovelCard({
-        name: element.name,
-        image: element.image,
-        id: element.id,
-        type: element.type
-      }))
-    });
+    const list = data.novels.map((novel, index) =>
+      <NovelCard
+        name={novel.name}
+        image={novel.image}
+        id={novel.id}
+        key={novel.id}
+        type={novel.type}
+      />
+    );
 
     return list
   }

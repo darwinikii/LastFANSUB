@@ -1,10 +1,14 @@
 "use client";
-import VolumeList from "/components/VolumeList"
 import { useRouter } from "next/navigation";
-import Nav from "/components/Nav"
 import Image from 'next/image'
 import useSWR from "swr"
 import Markdown from "react-markdown";
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from "react";
+
+const Disqus = dynamic(() => import('/components/Disqus'))
+const Nav = dynamic(() => import('/components/Nav'))
+const VolumeList = dynamic(() => import('/components/VolumeList'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -18,22 +22,32 @@ export default function Page({ params }) {
     },
     volumes: []
   }
+
+  const [disqus, setDisqus] = useState(undefined);
   const router = useRouter();
+
+  useEffect(() => {
+    setDisqus(Disqus({
+      identifier: "novel" + params.id,
+      title: "LastFANSUB",
+      url: window.location.href
+    }))
+  }, [setDisqus, params])
 
   if (data && error != undefined) {
     alert("Hata oluştu lütfen bize bildir!")
     router.back()
   }
 
-  var volumes = []
-  data.volumes.forEach(element => {
-    volumes.push(VolumeList({
-      name: "Cilt " + element.id,
-      image: element.image,
-      id: data.id,
-      vol: element.id
-    }))
-  });
+  const volumes = data.volumes.map((volume, index) =>
+      <VolumeList
+        name={"Cilt " + volume.id}
+        image={volume.image}
+        id={data.id}
+        key={data.id}
+        vol={volume.id}
+      />
+    );
 
   function handleRead(e) {
     router.push("/novel/" + data.id + "/read")
@@ -45,6 +59,7 @@ export default function Page({ params }) {
 
       <div className="rounded-xl w-full lg:max-w-4xl mt-4 flex border-gray-300 from-zinc-200 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
         <Image
+          priority={true}
           src={data.image}
           width={256}
           height={384}
@@ -114,8 +129,8 @@ export default function Page({ params }) {
         {volumes}
       </div>
 
-      <div className="hidden mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        FOOTER TODO
+      <div id="disqus_thread" className="mt-10 max-w-4xl lg:w-full lg:mb-0">
+        {disqus}
       </div>
     </main>
   )

@@ -20,22 +20,13 @@ export default function ChapterList({ className, id, vol }) {
     router.push("/novel/" + id + "/volume/" + e.target.getAttribute("volume") + "/chapter/" + e.target.getAttribute("chapter"))
   }
 
-  var list = [];
-
-  data.chapterList.forEach((element, index) => {
-    var e = createElement("li", {
-      key: data.basicList[index],
-      volume: data.basicList[index].split("-")[0],
-      chapter: data.basicList[index].split("-")[1]
-    }, element)
-    var div = createElement("div", {
-      className: "cursor-pointer m-2",
-      volume: data.basicList[index].split("-")[0],
-      chapter: data.basicList[index].split("-")[1],
-      onClick: readChapter,
-    }, e)
-    list.push(div)
-  });
+  const list = data.chapterList.map((chapter, index) =>
+    <div key={data.basicList[index]} volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]} onClick={readChapter} className="cursor-pointer m-2">
+      <li volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]}>
+        {chapter}
+      </li>
+    </div>
+  );
 
   return (
         <ul className="list-disc ml-4">
