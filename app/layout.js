@@ -18,6 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
+        <link rel="manifest" href="/manifest.json"/>
+        <meta name="theme-color" content="#000000"/>
+        <link rel="icon" href="favicon.ico" sizes="any" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-adsense-account" content="ca-pub-3609867447779558" />
         <meta name="google-site-verification" content="rS61IrS8r6xk8N1OU20FhT3FY1ksROaOjRxdhfO4xo8" />

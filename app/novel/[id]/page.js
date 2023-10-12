@@ -129,7 +129,7 @@ export default function Page({ params }) {
         {volumes}
       </div>
 
-      <div id="disqus_thread" className="mt-10 max-w-4xl lg:w-full lg:mb-0">
+      <div className="mt-10 w-full lg:max-w-4xl">
         {disqus}
       </div>
     </main>
