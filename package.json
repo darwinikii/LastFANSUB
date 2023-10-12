@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "disqus-react": "latest",
     "next": "latest",
+    "next-sitemap": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-markdown": "latest",
