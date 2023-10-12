@@ -20,8 +20,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
-        <link rel="icon" href="favicon.ico" sizes="any" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link preload="true" rel="icon" href="favicon.ico" sizes="any" />
         <meta name="google-adsense-account" content="ca-pub-3609867447779558" />
         <meta name="google-site-verification" content="rS61IrS8r6xk8N1OU20FhT3FY1ksROaOjRxdhfO4xo8" />
         <Script id="google-analytics">
@@ -33,7 +32,7 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-QHVGPV4XV6');
         `}
         </Script>
-        <Script preload='false' async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558' crossOrigin='anonymous'></Script>
+        <Script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558' crossOrigin='anonymous'></Script>
       </head>
       <body className={inter.className}>{children}</body>
     </html>
