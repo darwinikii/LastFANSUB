@@ -1,29 +1,42 @@
+"use client";
 import { useRouter } from "next/navigation";
-import Image from 'next/image'
+import dynamic from 'next/dynamic'
+import useSWR from "swr"
 
-export default function VolumeList({ name, image, className, id, vol }) {
-    const router = useRouter()
+const VolumeCard = dynamic(() => import('/components/VolumeCard'))
 
-    function handleClick(e) {
-      e.preventDefault()
-      
-      router.push("/novel/" + id + "/volume/" + vol)
-    }
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
-    return (
-      <div onClick={handleClick} className={ (className ? className + " " : "") + "p-2 cursor-pointer w-28 lg:w-52 hover:bg-zinc-600/30 m-2 grid place-items-center top-0 justify-center border-b border-gray-300 from-zinc-200 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border bg-gray-200 lg:p-4 bg-zinc-800/30" }>
-      { image ? (
-        <Image
-        src={image}
-        width={128}
-        height={192}
-        alt='Logo'
-        className="mb-2 md:w-32 md:h-48 w-16 h-24"
+export default function VolumeList({ id }) {
+  var { data, error, isLoading } = useSWR('/api/novel/' + id, fetcher);
+  if (!data || isLoading) data = {
+    genre: [],
+    author: {
+      name: undefined,
+      URL: undefined
+    },
+    volumes: []
+  }
+  const router = useRouter()
+
+  if (data && error != undefined) {
+    alert("Hata oluştu lütfen bize bildir!")
+    router.back()
+  }
+
+  const volumes = data.volumes.map((volume, index) =>
+      <VolumeCard
+        name={"Cilt " + volume.id}
+        image={volume.image}
+        id={data.id}
+        key={data.id}
+        vol={volume.id}
       />
-      ) : "" }
-      <p className="text-center">
-        {name}
-      </p>
-    </div>
+    );
+
+  return (
+      <div>
+        {volumes}
+      </div>
     )
   }
