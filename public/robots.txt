@@ -7,3 +7,4 @@ Host: https://lastfansub.repl.co
 
 # Sitemaps
 Sitemap: https://lastfansub.repl.co/sitemap.xml
+Sitemap: https://lastfansub.repl.co/sitemap-0.xml
