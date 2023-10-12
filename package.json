@@ -10,7 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "disqus-react": "latest",
+    "disqus-react": "^1.1.5",
     "next": "latest",
     "next-sitemap": "^4.2.3",
     "react": "latest",
