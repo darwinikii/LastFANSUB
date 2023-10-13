@@ -14,3 +14,5 @@ novels.forEach(n => {
         })
     }
 })
+
+console.log("Data fixed")
