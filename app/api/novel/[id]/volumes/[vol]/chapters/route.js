@@ -6,7 +6,9 @@ export async function GET(request, { params }) {
   var chapterList = []
   var basicList = []
 
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))) return notFound()
+  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))) {
+    fs.mkdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))
+  }
   var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
 
   chapters.forEach((chapter) => {

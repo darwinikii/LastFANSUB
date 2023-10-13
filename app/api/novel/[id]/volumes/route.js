@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation'
 import fs from "fs"
 import path from "path";
 
@@ -6,7 +5,9 @@ export async function GET(req, { params }) {
   var chapterList = []
   var basicList = []
 
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes"))) return notFound()
+  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes"))) {
+    fs.mkdirSync(path.join(process.cwd(), "data", params.id, "volumes"))
+  }
   var volumes = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes")).filter(f => !f.startsWith('.'))
   volumes.sort(function(a, b){return a - b})
 

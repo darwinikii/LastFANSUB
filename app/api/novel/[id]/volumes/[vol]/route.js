@@ -5,7 +5,9 @@ import path from "path";
 export async function GET(req, { params }) {
   if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "data.json"))) return notFound()
   if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "data.json"))) return notFound()
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))) return notFound()
+  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))) {
+    fs.mkdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))
+  }
   var volumeData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "data.json")))
   var novelData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "data.json")))
   var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
