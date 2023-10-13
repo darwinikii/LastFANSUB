@@ -17,8 +17,5 @@ module.exports = withPWA({
                 hostname: "*"
             }
         ]
-    },
-    experimental: {
-        serverActions: true,
-      }
+    }
 })

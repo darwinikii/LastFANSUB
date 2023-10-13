@@ -20,6 +20,8 @@ export default function ChapterList({ className, id, vol }) {
     router.push("/novel/" + id + "/volume/" + e.target.getAttribute("volume") + "/chapter/" + e.target.getAttribute("chapter"))
   }
 
+  console.log(data)
+
   const list = data.chapterList.map((chapter, index) =>
     <div key={data.basicList[index]} volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]} onClick={readChapter} className="cursor-pointer m-2">
       <li volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]}>
