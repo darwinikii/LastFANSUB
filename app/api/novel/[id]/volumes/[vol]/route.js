@@ -10,12 +10,10 @@ export async function GET(req, { params }) {
   var novelData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "data.json")))
   var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
 
-  console.log(chapters)
   volumeData["chapterList"] = []
   volumeData["basicList"] = []
   chapters.forEach((chapter) => {
     if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters", chapter))) return
-    console.log(chapter)
     chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters", chapter)))
 
     volumeData["chapterList"].push("Bölüm " + chapter.id + " - " + chapter.name)
