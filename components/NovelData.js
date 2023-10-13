@@ -25,7 +25,7 @@ export default function NovelCard({ id }) {
           <h3 className="ml-1 mt-2 text-2xs lg:text-xl font-medium text-gray-300">
             {data.fullName}
           </h3>
-          { data["secName"] == "" ? <h3 className="ml-1 mt-2 text-2xs lg:text-xl font-medium text-gray-300">{data.secName}</h3> : "" }
+          { data["secName"] != "" ? <h3 className="ml-1 mt-2 text-2xs lg:text-xl font-medium text-gray-300">{data.secName}</h3> : "" }
           <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">
             Yazar: <a href={data["author"]["URL"]} className="ml-2 font-semibold">{data["author"]["name"]}</a>
           </h3>

@@ -20,7 +20,7 @@ export default function NovelCard({ name, image, className, id }) {
         height={192}
         alt='Logo'
         className="mb-2 md:w-32 md:h-48 w-16 h-24"
-      />
+        />
       ) : "" }
       <p className="text-center	">
         {name}

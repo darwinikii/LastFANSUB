@@ -1,17 +1,33 @@
 {
-    "name": "LastFANSUB",
-    "short_name": "LastFANSUB",
-    "icons": [
-      {
-        "src": "/favicon.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "any maskable"
-      }
-    ],
-    "theme_color": "#000000",
-    "background_color": "#000000",
-    "start_url": "/",
-    "display": "standalone",
-    "orientation": "portrait"
+  "name": "LastFANSUB",
+  "short_name": "LastFANSUB",
+  "id": "1",
+  "description": "Novel çeviriyoruz.",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "start_url": "/",
+  "display": "standalone",
+  "handle_links": "preferred",
+  "orientation": "portrait",
+  "display_override": [
+    "window-controls-overlay",
+    "fullscreen"
+  ],
+  "edge_side_panel": {
+    "preferred_width": 1024
   }
+}

@@ -8,8 +8,8 @@ module.exports = {
       var dataFolder = fs.readdirSync("./data/")
 
       var list = dataFolder.map(async dataId => {
-        var isData = fs.existsSync("./data/" + dataId + "/data.json")
-        var isVolumes = fs.existsSync("./data/" + dataId + "/volumes/")
+        var isData = fs.existsSync("./app/data/" + dataId + "/data.json")
+        var isVolumes = fs.existsSync("./app/data/" + dataId + "/volumes/")
 
         if (isData && isVolumes) return await config.transform(config, "/novel/" + dataId)
       })
