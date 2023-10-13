@@ -1,12 +1,13 @@
 import fs from "fs"
+import path from "path";
 
 export async function GET() {
-    var novels = fs.readdirSync("./app/data")
+    var novels = fs.readdirSync(path.join(process.cwd(), "data"))
 
     novels.slice(-4)
 
     novels.forEach((e, i) => {
-      var data = fs.readFileSync("./app/data/" + e + "/data.json")
+      var data = fs.readFileSync(path.join(process.cwd(), "data", e, "data.json"))
       novels[i] = JSON.parse(data.toString())
     })
   
