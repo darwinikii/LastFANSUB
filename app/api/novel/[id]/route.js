@@ -6,7 +6,7 @@ export async function GET(req, { params }) {
   if (params.id == undefined) return
   if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "data.json"))) return notFound()
   var novel = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "data.json")))
-  var volumes = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes"))
+  var volumes = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes")).filter(f => !f.startsWith('.'))
 
   volumes.sort(function(a, b){return a - b})
 

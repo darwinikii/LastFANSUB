@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path";
 
 export async function GET() {
-    var novels = fs.readdirSync(path.join(process.cwd(), "data"))
+    var novels = fs.readdirSync(path.join(process.cwd(), "data")).filter(f => !f.startsWith('.'))
     const shuffled = novels.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 4);
 

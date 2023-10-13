@@ -4,7 +4,7 @@ import path from "path";
 export async function GET(request) {
     if (request.nextUrl.searchParams.has("text") == true) {
         var text = request.nextUrl.searchParams.get("text")
-        var files = fs.readdirSync(path.join(process.cwd(), "data"))
+        var files = fs.readdirSync(path.join(process.cwd(), "data")).filter(f => !f.startsWith('.'))
 
         var result = []
 

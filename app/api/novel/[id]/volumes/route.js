@@ -7,12 +7,12 @@ export async function GET(req, { params }) {
   var basicList = []
 
   if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes"))) return notFound()
-  var volumes = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes"))
+  var volumes = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes")).filter(f => !f.startsWith('.'))
   volumes.sort(function(a, b){return a - b})
 
   volumes.forEach((volume) => {
     if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", volume, "chapters"))) return
-    var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", volume, "chapters"))
+    var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", volume, "chapters")).filter(f => !f.startsWith('.'))
 
     chapters.forEach((chapter) => {
         if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", volume, "chapters", chapter))) return
