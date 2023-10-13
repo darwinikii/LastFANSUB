@@ -1,9 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation";
-import Search from '../components/Search'
-import Image from 'next/image'
 import useSWR from 'swr'
-import { createElement } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -19,8 +16,6 @@ export default function ChapterList({ className, id, vol }) {
   function readChapter(e) {
     router.push("/novel/" + id + "/volume/" + e.target.getAttribute("volume") + "/chapter/" + e.target.getAttribute("chapter"))
   }
-
-  console.log(data)
 
   const list = data.chapterList.map((chapter, index) =>
     <div key={data.basicList[index]} volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]} onClick={readChapter} className="cursor-pointer m-2">

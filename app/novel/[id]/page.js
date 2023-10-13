@@ -76,7 +76,7 @@ export default function Page({ params }) {
 
       <div className="mt-10 w-full lg:max-w-4xl">
         <Disqus
-          id={"novel" + params.id}
+          id={"n" + params.id}
         />
       </div>
     </main>
