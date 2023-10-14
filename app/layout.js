@@ -1,5 +1,4 @@
 import Script from 'next/script'
-import { GoogleAnalytics } from "nextjs-google-analytics";
 import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -20,7 +19,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
-        <GoogleAnalytics gaMeasurementId='G-6RL141V2EP'/>
+        <Script id='gtag' async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP"></Script>
+        <Script id='gtag-script'>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-6RL141V2EP');
+          `}
+        </Script>
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
         <link preload="true" rel="icon" href="favicon.ico" sizes="any" />

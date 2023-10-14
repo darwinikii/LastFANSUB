@@ -5,6 +5,7 @@ module.exports = {
     siteUrl: 'https://lastfansub.vercel.app',
     generateRobotsTxt: true,
     exclude: ["/api/*", "/uptime/*", "/api"],
+    generateIndexSitemap: false,
     additionalPaths: async (config) => {
       var dataFolder = fs.readdirSync(path.join(process.cwd(), "data"))
 

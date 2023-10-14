@@ -7,4 +7,3 @@ Host: https://lastfansub.vercel.app
 
 # Sitemaps
 Sitemap: https://lastfansub.vercel.app/sitemap.xml
-Sitemap: https://lastfansub.vercel.app/sitemap-0.xml
