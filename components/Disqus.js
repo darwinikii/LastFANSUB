@@ -11,7 +11,7 @@ export default function Disqus({ id }) {
             shortname='lastfansub'
             config={
                 {
-                    url: "https://lastfansub.repl.co" + pathname,
+                    url: "https://lastfansub.vercel.app" + pathname,
                     identifier: pathname
                 }
             }

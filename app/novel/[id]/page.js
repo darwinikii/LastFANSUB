@@ -8,7 +8,7 @@ const Markdown = dynamic(() => import('/components/MarkdownParse'))
 
 export async function generateMetadata({ params }) {
   try {
-    var data = await (await fetch('https://lastfansub.repl.co/api/novel/' + params.id)).json()
+    var data = await (await fetch('https://lastfansub.vercel.app/api/novel/' + params.id)).json()
 
     return {
       title: "LastFANSUB - " + data.name,

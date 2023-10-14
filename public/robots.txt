@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://lastfansub.repl.co
+Host: https://lastfansub.vercel.app
 
 # Sitemaps
-Sitemap: https://lastfansub.repl.co/sitemap.xml
+Sitemap: https://lastfansub.vercel.app/sitemap.xml
