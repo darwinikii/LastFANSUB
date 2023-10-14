@@ -1,0 +1,16 @@
+{
+    "id": 3,
+    "shortname": "re-zero",
+    "type": "Novel",
+    "name": "Re:Zero",
+    "fullName": "Re:Zero − Starting Life in Another World",
+    "secName": "Re:Zero kara Hajimeru Isekai Seikatsu",
+    "image": "/covers/re-zero/main.jpg",
+    "genre": ["Macera", "Komedi", "Fantezi", "Psikolojik", "Seinen"],
+    "status": "Çevirilecek",
+    "author": {
+        "name": "長月達平",
+        "URL": "https://en.wikipedia.org/wiki/Tappei_Nagatsuki"
+    },
+    "description": "Lise öğrencisi Subaru Natsuki, bakkaldan dönerken aniden başka bir dünyaya çağrılır. Hayatının en büyük krizini başka bir dünyaya çağrılmakla yaşayan ve kendisini çağıran kişiden hiçbir iz bulamayan Subaru, saldırıya uğradığında işler daha da kötüleşir. Ancak gizemli, gümüş saçlı ve peri kedili bir kız tarafından kurtarıldığında Subaru, kendisinden çalınan bir şeyin izini sürmesine yardım ederek iyiliğinin karşılığını vermeye çalışır. Sonunda bir ipucu bulmayı başardıklarında, Subaru ve kız birileri tarafından saldırıya uğrar ve öldürülür. Subaru daha sonra çağrıldığı yerde uyanır ve \"Ölümle Geri Dönme\" yeteneğini kazandığını ve sadece ölerek zamanı belirli bir noktaya geri sarma yeteneğine sahip çaresiz bir çocuk haline geldiğini fark eder. Umutsuzluğun ötesinde, kızı ölümün kaderinden kurtarabilecek midir?"
+}

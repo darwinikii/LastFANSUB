@@ -1,14 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Nav from "/components/Nav"
-import NovelCard from "/components/NovelCard"
-import Image from 'next/image'
+import SerieCard from "/components/SerieCard"
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page({ searchParams }) {
-  var { data, error } = useSWR('/api/novel/search?text=' + searchParams["q"], fetcher);
+  var { data, error } = useSWR('/api/search?text=' + searchParams["q"], fetcher);
 
   const router = useRouter()
 
@@ -18,7 +17,7 @@ export default function Page({ searchParams }) {
 
   var list = []
   data.forEach(element => {
-    list.push(NovelCard({
+    list.push(SerieCard({
       name: element.name,
       image: element.image,
       id: element.id,

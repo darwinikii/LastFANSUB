@@ -2,18 +2,18 @@
 import useSWR from 'swr';
 import dynamic from 'next/dynamic'
 
-const NovelCard = dynamic(() => import('/components/NovelCard'))
+const SerieCard = dynamic(() => import('/components/SerieCard'))
 const Nav = dynamic(() => import('/components/Nav'))
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page() {
 
   function useData(type) {
-    var { data, error, isLoading } = useSWR('/api/novel/' + type, fetcher);
+    var { data, error, isLoading } = useSWR('/api/' + type, fetcher);
     if (!data || isLoading) data = { novels: [] }
 
     const list = data.novels.map((novel, index) =>
-      <NovelCard
+      <SerieCard
         name={novel.name}
         image={novel.image}
         id={novel.id}

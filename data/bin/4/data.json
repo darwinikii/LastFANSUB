@@ -1,0 +1,16 @@
+{
+    "id": 4,
+    "shortname": "high-school",
+    "type": "Novel",
+    "name": "High School DxD",
+    "fullName": "Haisukūru Dī Dī",
+    "secName": "ハイスクールD×D",
+    "image": "/covers/high-school/main.jpg",
+    "genre": ["Ecchi", "Okul Hayatı", "Harem", "Shounen", "Romantizm", "Komedi", "Aksiyon"],
+    "status": "Çevirilecek",
+    "author": {
+        "name": "石踏 一榮",
+        "URL": "https://en.wikipedia.org/wiki/Ichiei_Ishibumi"
+    },
+    "description": "Ben, Hyoudou Issei, lise 2. sınıf öğrencisiyim ve yaşım, kız arkadaşım olmadığı yılların sayısına eşit. Ve benim gibi birinin kız arkadaşı yok! Üzgünüm dostlar, yetişkin olma yolunda sizden önce yürüyeceğim! - Böyle olması gerekiyordu, ama neden kız arkadaşım tarafından öldürüldüm!? Hala bir şey yapmadım! Bu dünyada hiç Tanrı yok mu? Ve beni kurtaran kişi okulumun en güzel kızı Rias Gremory-senpai. Şok edici gerçeği ondan öğrendim. O bir Tanrı değil, bir Şeytan. \"Bir Şeytan olarak yeniden doğdun! Benim için çalış!\"Senpai'nin göğüsleri ve ikramları tarafından cezbedilerek, reenkarne olmuş bir Şeytan olarak hayatım başladı. \"Akademi×Aşk Komedisi×Savaş Fantezisi\" burada sadece agresif ve dünyevi arzularla başlıyor!"
+}

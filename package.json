@@ -18,6 +18,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-markdown": "latest",
+    "react-responsive-carousel": "^3.2.23",
     "rehype-raw": "latest",
     "remark-gfm": "latest",
     "sharp": "latest",
