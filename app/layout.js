@@ -24,19 +24,21 @@ export default function RootLayout({ children }) {
         <link preload="true" rel="icon" href="favicon.ico" sizes="any" />
         <meta name="google-adsense-account" content="ca-pub-3609867447779558"/>
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />
-        <Script id="google-gtag" async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP"></Script>
-        <Script id="google-analytics">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-6RL141V2EP');
-          `}
-        </Script>
         <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossorigin="anonymous"></Script>
       </head>
       <body className={inter.className}>
+        <div>
+          <Script id="google-gtag" async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP"></Script>
+          <Script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+        
+              gtag('config', 'G-6RL141V2EP');
+            `}
+          </Script>
+        </div>
         {children}
         <Analytics/>
       </body>
