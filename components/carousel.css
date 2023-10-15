@@ -8,28 +8,8 @@
 	COLOURS
 ********************************************/
 
-@media (min-width: 320px) {
-  .carousel-root {
-    width: 60vh;
-  }
-}
-
-@media (min-width: 375px) {
-  .carousel-root {
-    width: 70vh;
-  }
-}
-
-@media (min-width: 768px) {
-  .carousel-root {
-    width: 85vh;
-  }
-}
-
-@media (min-width: 1024px) {
-  .carousel-root {
-    width: 100%;
-  }
+.carousel-root {
+  width: 100%;
 }
 
 .carousel .control-arrow, .carousel.carousel-slider .control-arrow {

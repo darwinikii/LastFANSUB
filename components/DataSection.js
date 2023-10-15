@@ -27,7 +27,7 @@ export default function DataSection({ id, vol, type }) {
           width={256}
           height={384}
           alt='Logo'
-          className="self-center ml-4 mb-2 w-36 h-52 md:w-64 md:h-96"
+          className="self-center ml-4 mb-2 mt-2 w-36 h-52 md:w-64 md:h-96"
         />
         <div className="ml-2 mr-2 lg:ml-10 lg:mr-10">
           <h2 className="flex ml-1 mt-2 text-lg lg:text-4xl font-semibold">
