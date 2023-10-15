@@ -25,9 +25,7 @@ export default function Nav({ className }) {
             alt='Logo'
           />
         </p>
-        <p onClick={handleMainMenuClick} className="hidden lg:flex cursor-pointer fixed relative top-0 flex w-full justify-center border-b border-gray-300 from-zinc-200 pb-6 pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
-          Ana Menü
-        </p>
+        
 
         <Search className="p-2 left-0 top-0 w-full justify-center lg:static lg:w-auto lg:p-4 flex w-full justify-center border-b border-gray-300 from-zinc-200 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30" />
 
