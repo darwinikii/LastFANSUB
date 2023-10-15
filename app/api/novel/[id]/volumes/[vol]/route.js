@@ -3,20 +3,20 @@ import fs from "fs"
 import path from "path";
 
 export async function GET(req, { params }) {
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "data.json"))) return notFound()
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "data.json"))) return notFound()
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))) {
-    fs.mkdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))
+  if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "data.json"))) return notFound()
+  if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "data.json"))) return notFound()
+  if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "chapters"))) {
+    fs.mkdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "chapters"))
   }
-  var volumeData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "data.json")))
-  var novelData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "data.json")))
-  var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
+  var volumeData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "data.json")))
+  var novelData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "data.json")))
+  var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
 
   volumeData["chapterList"] = []
   volumeData["basicList"] = []
   chapters.forEach((chapter) => {
-    if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters", chapter))) return
-    chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters", chapter)))
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "chapters", chapter))) return
+    chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "chapters", chapter)))
 
     volumeData["chapterList"].push("Bölüm " + chapter.id + " - " + chapter.name)
     volumeData["basicList"].push(params.vol + "-" + chapter.id)

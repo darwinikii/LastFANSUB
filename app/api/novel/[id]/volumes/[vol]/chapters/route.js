@@ -6,14 +6,14 @@ export async function GET(request, { params }) {
   var chapterList = []
   var basicList = []
 
-  if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))) {
-    fs.mkdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters"))
+  if (!fs.existsSync(path.join(process.cwd(), "data", "bin", "bin", params.id, "volumes", params.vol, "chapters"))) {
+    fs.mkdirSync(path.join(process.cwd(), "data", "bin", "bin", params.id, "volumes", params.vol, "chapters"))
   }
-  var chapters = fs.readdirSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
+  var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", "bin", params.id, "volumes", params.vol, "chapters")).filter(f => !f.startsWith('.'))
 
   chapters.forEach((chapter) => {
-    if (!fs.existsSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters", chapter))) return
-    chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", params.id, "volumes", params.vol, "chapters", chapter)))
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", "bin", params.id, "volumes", params.vol, "chapters", chapter))) return
+    chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", "bin", params.id, "volumes", params.vol, "chapters", chapter)))
 
     chapterList.push("Volume " + params.vol + " Chapter " + chapter.id + " - " + chapter.name)
     basicList.push(params.vol + "-" + chapter.id)

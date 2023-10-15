@@ -7,10 +7,10 @@ module.exports = {
     exclude: ["/api/*", "/uptime/*", "/api"],
     generateIndexSitemap: false,
     additionalPaths: async (config) => {
-      var dataFolder = fs.readdirSync(path.join(process.cwd(), "data"))
+      var dataFolder = fs.readdirSync(path.join(process.cwd(), "data", "bin"))
 
       var list = dataFolder.map(async dataId => {
-        var isData = fs.existsSync(path.join(process.cwd(), "data", dataId, "data.json"))
+        var isData = fs.existsSync(path.join(process.cwd(), "data", "bin", dataId, "data.json"))
 
         if (isData) return await config.transform(config, "/novel/" + dataId)
       })
