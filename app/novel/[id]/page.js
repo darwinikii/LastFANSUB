@@ -12,8 +12,8 @@ export async function generateMetadata({ params }) {
 
     return {
       title: "LastFANSUB - " + data.name,
-      description: data.name + " novel oku. " + data.name + " ve daha fazla light noveli Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
-      keywords: [...data.name.split(" "), data.name, 'Novel', 'Oku', 'Türkçe', 'Manga', 'last', 'fansub', 'lastfansub', 'lastsub'],
+      description: data.name + " novel oku. " + data.name + " ve daha fazla light noveli ve mangayı Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
+      keywords: [...data.name.split(" "), data.name, 'Novel', 'Manga', 'Oku', 'Türkçe', 'last', 'fansub', 'lastfansub', 'lastsub'],
       colorScheme: 'dark',
       robots: {
         index: true
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
     return {
       title: 'LastFANSUB',
       description: 'LastFANSUB olarak, en sevdiğiniz light novel’leri Türkçe’ye çeviriyoruz. Sitemizde, fantastik dünyaların kapılarını aralayacak, heyecan dolu maceralara atılacak ve unutulmaz karakterlerle tanışacaksınız. Her bir hikaye, özenle çevrilmiş ve okuyucularımızın zevkine sunulmuştur. LastFANSUB’da, her bir sayfanın sizi yeni bir dünyaya taşımasına izin verin.',
-      keywords: ['Novel', 'Oku', 'Türkçe', 'Manga', 'last', 'fansub', 'lastfansub', 'lastsub'],
+      keywords: ['Novel', 'Manga', 'Oku', 'Türkçe', 'last', 'fansub', 'lastfansub', 'lastsub'],
       colorScheme: 'dark',
       robots: {
         index: true
@@ -40,6 +40,7 @@ export default function Page({ params }) {
       <div className="rounded-xl w-full lg:max-w-4xl mt-4 flex border-gray-300 from-zinc-200 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
         <DataSection
           id={params.id}
+          type={"novel"}
         />
       </div>
       <div className="flex justify-center w-full mt-2">
