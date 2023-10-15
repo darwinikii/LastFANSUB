@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.1",
+    "cookies-next": "^4.0.0",
     "disqus-react": "latest",
     "next": "latest",
+    "next-client-cookies": "^1.0.5",
     "next-pwa": "^5.6.0",
     "next-sitemap": "latest",
     "react": "latest",
