@@ -33,3 +33,27 @@ for (serie of series) {
         });
     }
 }
+
+/*/
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA0153gt5McKHiB8tM5ghjfqEQXpGh8Aps",
+  authDomain: "lastfansub.firebaseapp.com",
+  projectId: "lastfansub",
+  storageBucket: "lastfansub.appspot.com",
+  messagingSenderId: "186957958036",
+  appId: "1:186957958036:web:4c1897998c7688d2121d81",
+  measurementId: "G-X1RQEWNHZX"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+/*/
