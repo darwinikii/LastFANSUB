@@ -9,15 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.1.1",
-    "cookies-next": "^4.0.0",
+    "@vercel/analytics": "latest",
+    "cookies-next": "latest",
     "disqus-react": "latest",
     "next": "latest",
-    "next-pwa": "^5.6.0",
+    "next-pwa": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-markdown": "latest",
-    "react-responsive-carousel": "^3.2.23",
+    "react-responsive-carousel": "latest",
     "sharp": "latest",
     "swr": "latest"
   },

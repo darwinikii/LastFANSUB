@@ -1,12 +1,10 @@
 "use client";
 import Image from 'next/image'
-import { useRouter } from 'next/navigation';
 import useSWR from "swr"
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function DataSection({ id, vol, type }) {
-  var router = useRouter();
   function useFetch(url) {
     var req = useSWR(url, fetcher);
     return req
@@ -17,6 +15,14 @@ export default function DataSection({ id, vol, type }) {
 
   var {data, error, isLoading} = useFetch(url)
   if (!data) return
+
+  var list = data["genre"].map((e, i) => {
+    return (
+      <a key={i} href={'/search?q=' + e}>
+        {e + (data["genre"].length > i + 1 ? ", " : "")}
+      </a>
+    )
+  })
 
   if (vol == undefined) {
     return (
@@ -42,7 +48,7 @@ export default function DataSection({ id, vol, type }) {
             Yazar: <a href={data["author"]["URL"]} className="ml-2 font-semibold">{data["author"]["name"]}</a>
           </h3>
           <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">
-            Tür: <a className="ml-2 font-medium text-ellipsis overflow-hidden ">{data["genre"].join(", ")}</a>
+            Tür: <a className="ml-2 font-medium text-ellipsis overflow-hidden ">{list}</a>
           </h3>
           <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">
             Durum: <a className="ml-2 font-medium truncate overflow-hidden">{data["status"]}</a>
@@ -78,9 +84,9 @@ export default function DataSection({ id, vol, type }) {
           className="self-center ml-4 mb-2 mt-2 w-36 h-52 md:w-64 md:h-96"
         />
         <div className="ml-10 mr-10">
-          <h2 onClick={() => router.push('/' + type + '/' + id)} className="cursor-pointer ml-1 mt-2 text-lg lg:text-4xl font-semibold">
+          <a href={'/' + type + '/' + id} className="ml-1 mt-2 text-lg lg:text-4xl font-semibold">
             {data["novelData"]["name"]}
-          </h2>
+          </a>
           <h3 className="ml-1 mt-2 text-xs lg:text-xl font-medium text-gray-300">
             Volume{' ' + data.id}
           </h3>
@@ -95,7 +101,7 @@ export default function DataSection({ id, vol, type }) {
           </h3>
           <div className="absolute bottom-5 right-5">
             <a
-              onClick={() => router.push('/' + type + '/' + id + "/volume/" + vol + "/read")}
+              href={'/' + type + '/' + id + "/volume/" + vol + "/read"}
               className="hidden lg:block inline-flex cursor-pointer group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className={`text-2xl font-semibold`}>

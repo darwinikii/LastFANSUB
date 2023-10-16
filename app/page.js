@@ -4,10 +4,9 @@ import dynamic from 'next/dynamic'
 
 const SerieCard = dynamic(() => import('/components/SerieCard'))
 const Nav = dynamic(() => import('/components/Nav'))
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url) => fetch(url, {next: { revalidate: 3600 }}).then((res) => res.json());
 
 export default function Page() {
-
   function useData(type) {
     var { data, error, isLoading } = useSWR('/api/' + type, fetcher);
     if (!data || isLoading) data = { novels: [] }

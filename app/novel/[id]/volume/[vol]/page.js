@@ -1,6 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation"; 
-import Image from 'next/image'
 import useSWR from "swr"
 import dynamic from 'next/dynamic'
 
@@ -21,11 +19,6 @@ export default function Page({ params }) {
     image: undefined,
     novelData: {}
   }
-  const router = useRouter();
-
-  function handleRead(e) {
-    router.push("/novel/" + params.id + "/volume/" + params.vol + "/read")
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
@@ -40,7 +33,7 @@ export default function Page({ params }) {
       </div>
       <div className="flex justify-center w-full mt-2">
             <a
-              onClick={handleRead}
+              href={"/novel/" + params.id + "/volume/" + params.vol + "/read"}
               className="flex justify-center block lg:hidden w-full inline-flex cursor-pointer group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-neutral-800/30"
             >
               <h2 className={`text-2xl font-semibold`}>
