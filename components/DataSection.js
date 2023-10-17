@@ -30,8 +30,8 @@ export default function DataSection({ id, vol, type }) {
         <Image
           priority={true}
           src={data.image}
-          width={256}
-          height={384}
+          width={1000}
+          height={1500}
           alt='Logo'
           className="self-center ml-4 mb-2 mt-2 w-36 h-52 md:w-64 md:h-96"
         />
@@ -78,8 +78,8 @@ export default function DataSection({ id, vol, type }) {
         <Image
           priority={true}
           src={data.image}
-          width={256}
-          height={384}
+          width={1000}
+          height={1500}
           alt='Logo'
           className="self-center ml-4 mb-2 mt-2 w-36 h-52 md:w-64 md:h-96"
         />

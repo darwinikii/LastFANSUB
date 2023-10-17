@@ -5,7 +5,6 @@ const path = require('path')
 fse.emptyDirSync(path.join(process.cwd(), "data", "mangas"))
 fse.emptyDirSync(path.join(process.cwd(), "data", "novels"))
 fse.emptyDirSync(path.join(process.cwd(), "data", "tags"))
-fse.emptyDirSync(path.join(process.cwd(), "public", "pages"))
 
 var series = fs.readdirSync(path.join(process.cwd(), "data", "bin")).map(e => fs.existsSync(path.join(process.cwd(), "data", "bin", e, "data.json")) ? JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", e, "data.json"))) : false )
 
