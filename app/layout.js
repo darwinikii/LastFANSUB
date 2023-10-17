@@ -34,6 +34,8 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
         <link preload="true" rel="icon" href="/favicon.ico" sizes="any"/>
+        <link rel="icon" href="/favicon.png" type="image/png"/>
+        <link rel="icon" href="/favicon.jpg" type="image/jpg"/>
         <link rel="canonical" href="https://lastfansub.vercel.app/"></link>
         <meta name="google-adsense-account" content="ca-pub-3609867447779558"/>
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />

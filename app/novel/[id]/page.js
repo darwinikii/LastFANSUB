@@ -19,6 +19,9 @@ export async function generateMetadata({ params }) {
       robots: {
         index: true,
         follow: true
+      },
+      openGraph: {
+        images: [data.image],
       }
     }
   } catch (e) {
@@ -35,10 +38,31 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function Page({ params }) {
+async function getNovelData(params) {
+  var data = await (await fetch("https://lastfansub.vercel.app/api/novel/" + params.id)).json();
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: data.name,
+    image: data.image,
+    description: data.description,
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export default async function Page({ params }) {
+  var data = await getNovelData(params);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-x-hidden">
-      
+      {data}
       <Nav className='left-0 top-0 z-10 w-full items-center justify-between font-mono text-sm lg:flex'/>
 
       <div className="rounded-xl w-full lg:max-w-4xl mt-4 flex border-gray-300 from-zinc-200 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
