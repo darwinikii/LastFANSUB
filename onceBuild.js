@@ -12,15 +12,15 @@ var series = fs.readdirSync(path.join(process.cwd(), "data", "bin")).map(e => fs
 for (serie of series) {
     if (serie["type"] == "Novel") {
         if (fs.existsSync(path.join(process.cwd(), "data", "novels", serie["id"].toString()))) fs.rmSync(path.join(process.cwd(), "data", "novels", serie["id"].toString()), { recursive: true, force: true })
-        fs.mkdirSync(path.join(process.cwd(), "data", "novels", serie["id"].toString()))
+        fs.writeFileSync(path.join(process.cwd(), "data", "novels", serie["id"].toString()), "true")
     } else if (serie["type"] == "Manga") {
         if (fs.existsSync(path.join(process.cwd(), "data", "mangas", serie["id"].toString()))) fs.rmSync(path.join(process.cwd(), "data", "mangas", serie["id"].toString()), { recursive: true, force: true })
-        fs.mkdirSync(path.join(process.cwd(), "data", "mangas", serie["id"].toString()))
+        fs.writeFileSync(path.join(process.cwd(), "data", "mangas", serie["id"].toString()), "true")
     }
     if (serie["genre"]) {
         serie["genre"].forEach(e => {
             if (!fs.existsSync(path.join(process.cwd(), "data", "tags", e))) fs.mkdirSync(path.join(process.cwd(), "data", "tags", e))
-            fs.mkdirSync(path.join(process.cwd(), "data", "tags", e, serie["id"].toString()))
+            fs.writeFileSync(path.join(process.cwd(), "data", "tags", e, serie["id"].toString()), "true")
         });
     }
 }
