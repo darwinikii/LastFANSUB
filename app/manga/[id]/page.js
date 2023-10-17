@@ -19,6 +19,9 @@ export async function generateMetadata({ params }) {
       robots: {
         index: true,
         follow: true
+      },
+      openGraph: {
+        images: [data.image],
       }
     }
   } catch (e) {
