@@ -9,11 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@pwabuilder/pwainstall": "^1.6.7",
     "@vercel/analytics": "latest",
     "cookies-next": "latest",
     "disqus-react": "latest",
-    "next": "^13.5.5",
+    "next": "latest",
     "next-pwa": "latest",
     "react": "latest",
     "react-dom": "latest",
