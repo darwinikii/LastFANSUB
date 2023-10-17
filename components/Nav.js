@@ -12,10 +12,10 @@ export default function Nav({ className, searchValue }) {
             <Image
               priority={true}
               src="/logo.png"
-              width={500}
-              height={250}
+              width={160}
+              height={96}
               alt='Logo'
-              className='w-40 h-24'
+              className='w-40 h-20'
             />
           </a>
 
