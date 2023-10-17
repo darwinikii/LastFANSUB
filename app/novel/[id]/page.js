@@ -47,6 +47,18 @@ async function getNovelData(params) {
     name: data.name,
     image: data.image,
     description: data.description,
+    review: {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5,
+        "bestRating": 5
+      },
+      "author": {
+        "@type": "Person",
+        "name": data.author.name
+      }
+    }
   }
 
   return (
