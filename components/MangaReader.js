@@ -56,8 +56,7 @@ export default function MangaReader({ id, chap }) {
                     key={index}
                     className='w-full h-auto'
                     src={"/pages/" + mangaData["shortname"] + "/" + page}
-                    width={1115}
-                    height={1600}
+                    desktopSize={[1115, 1600]}
                     alt='Image'
                 />
             )
