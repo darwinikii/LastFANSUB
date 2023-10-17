@@ -2,8 +2,10 @@
 import { Carousel } from 'react-responsive-carousel';
 import { setCookie as setValue, getCookie, hasCookie } from 'cookies-next';
 import "./carousel.css";
-import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import useSWR from "swr"
+
+const Image = dynamic(() => import('../components/Image'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -33,8 +35,8 @@ export default function MangaReader({ id, chap }) {
                         <Image
                             priority={true}
                             src={"/pages/" + mangaData["shortname"] + "/" + page}
-                            width={1115}
-                            height={1600}
+                            desktopSize={[1115, 1600]}
+                            mobileSize={[700, 1005]}
                             alt='Logo'
                             className='self-center w-screen'
                         />

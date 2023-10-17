@@ -1,6 +1,9 @@
 "use client";
-import Image from 'next/image'
+import Link from 'next/link';
+import dynamic from 'next/dynamic'
 import useSWR from "swr"
+
+const Image = dynamic(() => import('../components/Image'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -14,13 +17,13 @@ export default function DataSection({ id, vol, type }) {
   else var url = '/api/' + type +'/' + id
 
   var {data, error, isLoading} = useFetch(url)
-  if (!data) return
+  if (!data) return <div>Yükleniyor</div>
 
-  var list = data["genre"].map((e, i) => {
+  if (data["genre"]) var list = data["genre"].map((e, i) => {
     return (
-      <a key={i} href={'/search?q=' + e}>
+      <Link key={i} href={'/search?q=' + e}>
         {e + (data["genre"].length > i + 1 ? ", " : "")}
-      </a>
+      </Link>
     )
   })
 
@@ -30,8 +33,8 @@ export default function DataSection({ id, vol, type }) {
         <Image
           priority={true}
           src={data.image}
-          width={1000}
-          height={1500}
+          desktopSize={[256, 384]}
+          mobileSize={[144, 208]}
           alt='Logo'
           className="self-center ml-4 mb-2 mt-2 w-36 h-52 md:w-64 md:h-96"
         />
@@ -56,7 +59,7 @@ export default function DataSection({ id, vol, type }) {
           { data["translator"] ? <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">Çeviren: <a className="ml-2 font-medium truncate overflow-hidden">{data["translator"]}</a></h3> : ""}
           
           <div className="flex justify-end mt-10">
-            <a
+            <Link
               href={'/' + type + '/' + data.id + "/read"}
               className="hidden lg:block inline-flex cursor-pointer group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-neutral-800/30"
             >
@@ -66,7 +69,7 @@ export default function DataSection({ id, vol, type }) {
                   -&gt;
                 </span>
               </h2>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -78,15 +81,15 @@ export default function DataSection({ id, vol, type }) {
         <Image
           priority={true}
           src={data.image}
-          width={1000}
-          height={1500}
+          desktopSize={[256, 384]}
+          mobileSize={[144, 208]}
           alt='Logo'
           className="self-center ml-4 mb-2 mt-2 w-36 h-52 md:w-64 md:h-96"
         />
         <div className="ml-10 mr-10">
-          <a href={'/' + type + '/' + id} className="ml-1 mt-2 text-lg lg:text-4xl font-semibold">
+          <Link href={'/' + type + '/' + id} className="ml-1 mt-2 text-lg lg:text-4xl font-semibold">
             {data["novelData"]["name"]}
-          </a>
+          </Link>
           <h3 className="ml-1 mt-2 text-xs lg:text-xl font-medium text-gray-300">
             Volume{' ' + data.id}
           </h3>
@@ -100,7 +103,7 @@ export default function DataSection({ id, vol, type }) {
             
           </h3>
           <div className="absolute bottom-5 right-5">
-            <a
+            <Link
               href={'/' + type + '/' + id + "/volume/" + vol + "/read"}
               className="hidden lg:block inline-flex cursor-pointer group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-neutral-800/30"
             >
@@ -110,7 +113,7 @@ export default function DataSection({ id, vol, type }) {
                   -&gt;
                 </span>
               </h2>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

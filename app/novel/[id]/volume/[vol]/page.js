@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link'
 import useSWR from "swr"
 import dynamic from 'next/dynamic'
 
@@ -32,7 +33,7 @@ export default function Page({ params }) {
         />
       </div>
       <div className="flex justify-center w-full mt-2">
-            <a
+            <Link
               href={"/novel/" + params.id + "/volume/" + params.vol + "/read"}
               className="flex justify-center block lg:hidden w-full inline-flex cursor-pointer group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-neutral-800/30"
             >
@@ -42,7 +43,7 @@ export default function Page({ params }) {
                   -&gt;
                 </span>
               </h2>
-            </a>
+            </Link>
           </div>
 
       <h2 className="mt-10 mb-5 text-xl lg:text-4xl font-semibold">

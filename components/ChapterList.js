@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import useSWR from 'swr'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -10,11 +11,11 @@ export default async function ChapterList({ className, id, vol }) {
   }
 
   const list = data.chapterList.map((chapter, index) =>
-    <a key={data.basicList[index]} volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]} href={"/novel/" + id + "/volume/" + data.basicList[index].split("-")[0] + "/chapter/" + data.basicList[index].split("-")[1]} className="cursor-pointer mt-1 mb-1">
+    <Link key={data.basicList[index]} volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]} href={"/novel/" + id + "/volume/" + data.basicList[index].split("-")[0] + "/chapter/" + data.basicList[index].split("-")[1]} className="cursor-pointer mt-1 mb-1">
       <li volume={data.basicList[index].split("-")[0]} chapter={data.basicList[index].split("-")[1]}>
         {chapter}
       </li>
-    </a>
+    </Link>
   );
 
   return (

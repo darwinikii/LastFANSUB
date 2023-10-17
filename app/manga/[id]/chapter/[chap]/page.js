@@ -5,7 +5,6 @@ const Nav = dynamic(() => import('/components/Nav'))
 const MangaControlBar = dynamic(() => import('/components/MangaControlBar'))
 const MangaControlBarMobile = dynamic(() => import('/components/MangaControlBarMobile'))
 const MangaReader = dynamic(() => import('/components/MangaReader'))
-const MangaReaderChoices = dynamic(() => import('/components/MangaReaderChoices'))
 
 export default function Page({ params }) {
 

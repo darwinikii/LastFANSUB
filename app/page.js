@@ -1,9 +1,11 @@
 "use client";
+import "@pwabuilder/pwainstall";
 import useSWR from 'swr';
 import dynamic from 'next/dynamic'
 
 const SerieCard = dynamic(() => import('/components/SerieCard'))
 const Nav = dynamic(() => import('/components/Nav'))
+const Image = dynamic(() => import('/components/Image'))
 const fetcher = (url) => fetch(url, {next: { revalidate: 3600 }}).then((res) => res.json());
 
 export default function Page() {
@@ -29,6 +31,26 @@ export default function Page() {
   
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-x-hidden">
+      <div className="flex lg:hidden items-center">
+        <div className="flex items-center mr-36">
+          <Image
+            src="/favicon.png"
+            alt="Logo"
+            desktopSize={[64, 64]}
+          />
+          LastFANSUB
+        </div>
+        <pwa-install
+          className="mr-10 rounded-xl"
+          explainer="Bu uygulama telefonuna yüklenebilir. Bu siteye hızlı erişmeni ve rahat kullanmanı sağlar. Normal yüklenmiş uygulama gibi gözükür fakat cihazınızda yer kaplamaz cihazınıza zarar veremez."
+          featuresheader="Özellikler"
+          descriptionheader="Açıklama"
+          installbuttontext="Yükle"
+          cancelbuttontext="İptal et"
+          iosinstallinfotext="Paylaş düğmesine ve ardından 'Ana Ekrana Ekle'ye dokunun"
+        />
+      </div>
+      
       <Nav className='left-0 top-0 z-10 w-full items-center justify-between font-mono text-sm lg:flex'/>
 
       <div className="flex flex-col items-center max-w-full">

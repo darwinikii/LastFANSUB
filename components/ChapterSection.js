@@ -1,6 +1,9 @@
 "use client";
-import Image from 'next/image'
+import Link from 'next/link';
 import useSWR from "swr"
+import dynamic from 'next/dynamic'
+
+const Image = dynamic(() => import('../components/Image'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -9,12 +12,12 @@ export default function ChapterSection({ id, chapterID }) {
     if (!data) return
 
     return (
-      <a href={"/manga/" + id + "/chapter/" + chapterID} className="p-2 flex mt-2 mb-2 cursor-pointer hover:backdrop-blur-2xl hover:border-neutral-800 hover:bg-zinc-800/30 hover:from-inherit hover:rounded-xl hover:bg-gray-200 hover:bg-zinc-800/30">
+      <Link href={"/manga/" + id + "/chapter/" + chapterID} className="p-2 flex mt-2 mb-2 cursor-pointer hover:backdrop-blur-2xl hover:border-neutral-800 hover:bg-zinc-800/30 hover:from-inherit hover:rounded-xl hover:bg-gray-200 hover:bg-zinc-800/30">
         <Image
           priority={true}
           src={data.image}
-          width={256}
-          height={384}
+          desktopSize={[160, 240]}
+          mobileSize={[144, 208]}
           alt='Logo'
           className="self-center w-36 h-52 md:w-40 md:h-60"
         />
@@ -28,6 +31,6 @@ export default function ChapterSection({ id, chapterID }) {
           </h3>
           { data["arc"] ? <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">Arc: <a className="ml-2 font-medium truncate overflow-hidden">{data["arc"]}</a></h3> : ""}
         </div>
-      </a>
+      </Link>
     )
   }

@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net"/>
         <Script id='gtag' async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP"></Script>
         <Script id='gtag-script'>
           {`
@@ -32,7 +33,7 @@ export default function RootLayout({ children }) {
         </Script>
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
-        <link preload="true" rel="icon" href="favicon.ico" sizes="any"/>
+        <link preload="true" rel="icon" href="/favicon.ico" sizes="any"/>
         <link rel="canonical" href="https://lastfansub.vercel.app/"></link>
         <meta name="google-adsense-account" content="ca-pub-3609867447779558"/>
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />

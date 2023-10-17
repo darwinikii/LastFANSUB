@@ -1,5 +1,4 @@
 "use client";
-import Image from 'next/image'
 import useSWR from "swr"
 import dynamic from 'next/dynamic'
 

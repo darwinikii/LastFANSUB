@@ -1,7 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import useSWR from "swr"
-import { createElement } from "react";
 
 export default function MangaControlBarMobile({ id }) {
   const router = useRouter()
