@@ -14,6 +14,7 @@ export default function MangaControlBar({ id, chap }) {
 
     var list = data.list.map(element => {
       return createElement("option", {
+        selected: element.id == chap,
         key: element.id,
         chapter: element.id
       }, "Bölüm " + element.id + " - " + element.name)
@@ -64,7 +65,7 @@ export default function MangaControlBar({ id, chap }) {
 
             <div className='lg:ml-10 lg:mr-10 block lg:flex items-center w-full'>
               <MangaReaderChoices className="bg-zinc-800/30 border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-neutral-800 placeholder-gray-900 text-white focus:ring-blue-500 focus:border-blue-500"/>
-              <select id="chapterSelect" onChange={handleOnChange} value={chap} className="bg-zinc-800/30 border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-neutral-800 placeholder-gray-900 text-white focus:ring-blue-500 focus:border-blue-500">
+              <select id="chapterSelect" onChange={handleOnChange} className="bg-zinc-800/30 border-neutral-800 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-neutral-800 placeholder-gray-900 text-white focus:ring-blue-500 focus:border-blue-500">
                 {list}
               </select>
             </div>

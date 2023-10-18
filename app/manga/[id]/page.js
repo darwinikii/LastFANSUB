@@ -33,6 +33,13 @@ export async function generateMetadata({ params }) {
       robots: {
         index: true,
         follow: true
+      },
+      openGraph: {
+        title: 'LastFANSUB',
+        siteName: 'LastFANSUB',
+        description: 'LastFANSUB olarak, en sevdiğiniz light novel’leri Türkçe’ye çeviriyoruz. Sitemizde, fantastik dünyaların kapılarını aralayacak, heyecan dolu maceralara atılacak ve unutulmaz karakterlerle tanışacaksınız. Her bir hikaye, özenle çevrilmiş ve okuyucularımızın zevkine sunulmuştur. LastFANSUB’da, her bir sayfanın sizi yeni bir dünyaya taşımasına izin verin.',
+        url: 'https://lastfansub.vercel.app',
+        type: 'website',
       }
     }
   }

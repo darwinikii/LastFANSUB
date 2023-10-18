@@ -34,7 +34,7 @@ export default function MangaReader({ id, chap }) {
                     <div className='' key={index}>
                         <Image
                             priority={true}
-                            src={"/pages/" + mangaData["shortname"] + "/" + page}
+                            src={"/pages/" + mangaData["shortname"] + "/" + chap + "/" + page}
                             desktopSize={[1115, 1600]}
                             mobileSize={[700, 1005]}
                             alt='Logo'
@@ -55,7 +55,7 @@ export default function MangaReader({ id, chap }) {
                 <Image 
                     key={index}
                     className='w-full h-auto'
-                    src={"/pages/" + mangaData["shortname"] + "/" + page}
+                    src={"/pages/" + mangaData["shortname"] + "/" + chap + "/" + page}
                     desktopSize={[1115, 1600]}
                     alt='Image'
                 />
