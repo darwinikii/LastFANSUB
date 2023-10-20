@@ -58,34 +58,38 @@ export async function generateMetadata({ params }) {
 }
 
 async function getMangaData(params) {
-  var data = await (await fetch("https://lastfansub.vercel.app/api/manga/" + params.id)).json();
+  try {
+    var data = await (await fetch("https://lastfansub.vercel.app/api/manga/" + params.id)).json();
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: data.name,
-    image: data.image,
-    description: data.description,
-    review: {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": 5,
-        "bestRating": 5
-      },
-      "author": {
-        "@type": "Person",
-        "name": data.author.name
+    const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: data.name,
+      image: data.image,
+      description: data.description,
+      review: {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 5,
+          "bestRating": 5
+        },
+        "author": {
+          "@type": "Person",
+          "name": data.author.name
+        }
       }
     }
-  }
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
+    return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
   )
+  } catch (error) {
+    return null;
+  }
 }
 
 export default async function Page({ params }) {

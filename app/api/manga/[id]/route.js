@@ -7,11 +7,12 @@ export async function GET(req, { params }) {
   if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "data.json"))) return notFound()
   var manga = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "data.json")))
   if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "chapters"))) var chapters = []
-  else var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "chapters")).filter(f => !f.startsWith('.')).sort(function(a, b){return parseInt(a.split(".")[0]) - parseInt(b.split(".")[0])})
+  else var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "chapters")).filter(f => !f.startsWith('.')).sort((a, b) => parseFloat(a) - parseFloat(b))
 
   manga["chapters"] = []
-  chapters.forEach((e) => {
+  chapters.reverse().forEach((e) => {
     var chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "chapters", e)))
+    if (chapter["enabled"] == false) return
 
     manga["chapters"].push(chapter)
   })

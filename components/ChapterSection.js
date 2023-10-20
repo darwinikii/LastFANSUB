@@ -27,7 +27,7 @@ export default function ChapterSection({ id, chapterID }) {
           </h2>
           { data["secName"] != "" ? <h3 className="ml-1 mt-2 text-2xs lg:text-xl font-medium text-gray-300">{data.secName}</h3> : "" }
           <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">
-            Sayfa Sayısı: <a className="ml-2 font-semibold">{data["page-count"]}</a>
+            Sayfa Sayısı: <a className="ml-2 font-semibold">{data["pages"].length}</a>
           </h3>
           { data["arc"] ? <h3 className="flex ml-1 mt-4 text-2xs lg:text-xl font-normal">Arc: <a className="ml-2 font-medium truncate overflow-hidden">{data["arc"]}</a></h3> : ""}
         </div>
