@@ -16,6 +16,7 @@ module.exports = withPWA({
                 protocol: "http",
                 hostname: "*"
             }
-        ]
+        ],
+        unoptimized: true,
     }
 })

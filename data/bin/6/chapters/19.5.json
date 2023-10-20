@@ -4,6 +4,5 @@
     "secName": "Dating App of the Dead",
     "arc": "Volume 5 - Bonus",
     "image": "/covers/zombie100/19.5.png",
-    "pages": ["02.webp","03.webp","05.webp","06.webp","07.webp","08.webp","09.webp","10.webp","11.webp","12.webp","13.webp"],
-    "enabled": false
+    "pages": ["02.webp","03.webp","05.webp","06.webp","07.webp","08.webp","09.webp","10.webp","11.webp","12.webp","13.webp"]
 }
