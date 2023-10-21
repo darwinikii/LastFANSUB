@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import fs from 'fs'
+import path from 'path'
 
 const Disqus = dynamic(() => import('/components/Disqus'))
 const Nav = dynamic(() => import('/components/Nav'))
@@ -90,6 +92,13 @@ async function getMangaData(params) {
   } catch (error) {
     return null;
   }
+}
+
+export async function generateStaticParams() {
+  if (!fs.existsSync(path.join(process.cwd(), "data", "mangas"))) return []
+  var novels = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function(a, b){return a - b})
+
+  return novels.map(e => { id: e.id })
 }
 
 export default async function Page({ params }) {

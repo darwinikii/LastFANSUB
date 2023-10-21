@@ -1,6 +1,24 @@
-import { notFound } from 'next/navigation'
 import fs from "fs"
 import path from "path";
+
+export async function generateStaticParams() {
+  if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
+  var params = [];
+  var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function(a, b){return a - b})
+  novels.forEach(novel => {
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes"))) return
+    var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes")).sort(function(a, b){return a - b})
+    volumes.forEach(volume => {
+      params.push({
+        id: novel.id,
+        vol: volume
+      })
+    })
+  })
+
+
+  return params
+}
 
 export async function GET(request, { params }) {
   var chapterList = []

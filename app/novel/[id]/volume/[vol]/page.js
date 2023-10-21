@@ -1,26 +1,33 @@
-"use client";
 import Link from 'next/link'
-import useSWR from "swr"
 import dynamic from 'next/dynamic'
+import fs from 'fs'
+import path from 'path'
 
 const ChapterList = dynamic(() => import('/components/ChapterList'))
 const Nav = dynamic(() => import('/components/Nav'))
 const DataSection = dynamic(() => import('/components/DataSection'))
 const Markdown = dynamic(() => import('/components/MarkdownParse'))
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+export async function generateStaticParams() {
+  if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
+  var params = [];
+  var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function(a, b){return a - b})
+  novels.forEach(novel => {
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes"))) return
+    var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes")).sort(function(a, b){return a - b})
+    volumes.forEach(volume => {
+      params.push({
+        id: novel.id,
+        vol: volume
+      })
+    })
+  })
+
+
+  return params
+}
 
 export default function Page({ params }) {
-  var { data, error, isLoading } = useSWR('/api/novel/' + params.id + "/volumes/" + params.vol, fetcher);
-  if (!data || isLoading) data = {
-    id: undefined,
-    "release-date": undefined,
-    synopsis: undefined,
-    status: undefined,
-    image: undefined,
-    novelData: {}
-  }
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
       <Nav className='left-0 top-0 z-10 w-full items-center justify-between font-mono text-sm lg:flex'/>

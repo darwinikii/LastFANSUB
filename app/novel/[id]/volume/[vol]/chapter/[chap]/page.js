@@ -1,5 +1,7 @@
 import './style.css'
 import dynamic from 'next/dynamic'
+import fs from 'fs'
+import path from 'path'
 
 const Disqus = dynamic(() => import('/components/Disqus'))
 const Nav = dynamic(() => import('/components/Nav'))
@@ -7,8 +9,33 @@ const NovelControlBar = dynamic(() => import('/components/NovelControlBar'))
 const NovelControlBarMobile = dynamic(() => import('/components/NovelControlBarMobile'))
 const MarkdownParse = dynamic(() => import('/components/MarkdownParse'))
 
-export default function Page({ params }) {
+export async function generateStaticParams() {
+  if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
+  var params = [];
+  var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function(a, b){return a - b})
+  novels.forEach(novel => {
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes"))) return
+    var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes")).sort(function(a, b){return a - b})
+    
+    volumes.forEach(volume => {
+      if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes", volume, "chapters"))) return
+      var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes", volume, "chapters"), { withFileTypes: false }).map(e => e.split(".")[0]).sort(function(a, b){return a - b})
 
+      chapters.forEach(chapter => {
+        params.push({
+          id: novel,
+          vol: volume,
+          chap: chapter
+        })
+      })
+    })
+  })
+
+
+  return params
+}
+
+export default function Page({ params }) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
       <Nav className='z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex'/>

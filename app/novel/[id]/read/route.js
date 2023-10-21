@@ -1,3 +1,13 @@
+import fs from 'fs'
+import path from 'path'
+
+export async function generateStaticParams() {
+    if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
+    var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function(a, b){return a - b})
+  
+    return novels.map(e => { id: e.id })
+  }
+
 export async function GET(req, { params }) {
     try {
         var api = await fetch("https://lastfansub.vercel.app/api/novel/" + params.id + "/volumes")

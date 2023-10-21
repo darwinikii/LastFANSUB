@@ -1,9 +1,10 @@
+"use client";
 import Link from 'next/link';
 import useSWR from 'swr'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default async function ChapterList({ className, id, vol }) {
+export default function ChapterList({ className, id, vol }) {
   var { data, error, isLoading } = useSWR('/api/novel/' + id + '/volumes/' + vol, fetcher);
   if (!data || isLoading) data = { 
     basicList: [],
