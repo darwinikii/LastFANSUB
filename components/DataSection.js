@@ -32,7 +32,7 @@ export default function DataSection({ id, vol, type }) {
       <div className="flex">
         <Image
           priority={true}
-          src={data.image}
+          desktopSrc={data.image}
           desktopSize={[256, 384]}
           mobileSize={[144, 208]}
           alt='Logo'
@@ -80,7 +80,7 @@ export default function DataSection({ id, vol, type }) {
       <div className="flex">
         <Image
           priority={true}
-          src={data.image}
+          desktopSrc={data.image}
           desktopSize={[256, 384]}
           mobileSize={[144, 208]}
           alt='Logo'

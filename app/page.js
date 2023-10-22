@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 
 const SerieCard = dynamic(() => import('/components/SerieCard'))
 const Nav = dynamic(() => import('/components/Nav'))
-const Image = dynamic(() => import('/components/Image'))
 const fetcher = (url) => fetch(url, {next: { revalidate: 3600 }}).then((res) => res.json());
 
 export default function Page() {
@@ -15,7 +14,7 @@ export default function Page() {
     const list = data.novels.map((novel, index) =>
       <SerieCard
         name={novel.name}
-        image={novel.image}
+        shortname={novel.shortname}
         id={novel.id}
         key={novel.id}
         type={novel.type}

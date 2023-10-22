@@ -15,7 +15,7 @@ export default function ChapterSection({ id, chapterID }) {
       <Link href={"/manga/" + id + "/chapter/" + chapterID} className="p-2 flex mt-2 mb-2 cursor-pointer hover:backdrop-blur-2xl hover:border-neutral-800 hover:bg-zinc-800/30 hover:from-inherit hover:rounded-xl hover:bg-gray-200 hover:bg-zinc-800/30">
         <Image
           priority={true}
-          src={data.image}
+          desktopSrc={data.image}
           desktopSize={[160, 240]}
           mobileSize={[144, 208]}
           alt='Logo'

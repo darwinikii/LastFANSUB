@@ -19,7 +19,7 @@ export default function Page({ searchParams }) {
     return <SerieCard
       key={i}
       name={e.name}
-      image={e.image}
+      shortname={e.shortname}
       id={e.id}
       type={e.type}
     />

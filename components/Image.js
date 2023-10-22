@@ -2,15 +2,21 @@
 import Image from "next/image"
 import { useState, useEffect } from "react";
 
-export default function ImageWrapper({ className, src, desktopSize, mobileSize, alt, loader, fill, quality, priority, placeholder, style, onLoadingComplete, onLoad, onError, loading, blurDataURL}) {
+export default function ImageWrapper({ className, desktopSrc, mobileSrc, desktopSize, mobileSize, alt, loader, fill, quality, priority, placeholder, style, onLoadingComplete, onLoad, onError, loading, blurDataURL, sizes}) {
     const size = useWindowSize();
 
-    if ((size && size.width > 1024) || !mobileSize) var imgSize = desktopSize
-    else var imgSize = mobileSize
+    var imgSize, imgSrc
+    if ((size && size.width > 1024) || !mobileSize || !mobileSrc) {
+      imgSize = desktopSize
+      imgSrc = desktopSrc
+    } else {
+      imgSize = mobileSize
+      imgSrc = mobileSrc
+    }
 
     return (
         <Image
-            src={src}
+            src={imgSrc}
             alt={alt}
             loader={loader}
             fill={fill}
@@ -26,6 +32,7 @@ export default function ImageWrapper({ className, src, desktopSize, mobileSize, 
             width={imgSize[0]}
             height={imgSize[1]}
             className={className}
+            sizes={sizes}
         />
     )
 }

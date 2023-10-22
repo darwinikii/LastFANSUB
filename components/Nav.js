@@ -12,7 +12,7 @@ export default function Nav({ className, searchValue }) {
           <Link href="/" className="cursor-pointer flex w-full justify-center lg:border:0 border-b border-gray-300 from-zinc-200 pt-2 pb-2 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:w-auto  lg:rounded-xl border lg:border-0 bg-gray-200 lg:bg-transparent lg:p-4 bg-zinc-800/30">
             <Image
               priority={true}
-              src="/logo.png"
+              desktopSrc={"/logo.png"}
               desktopSize={[160, 96]}
               alt='Logo'
               className='w-40 h-20'
