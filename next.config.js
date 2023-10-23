@@ -18,5 +18,8 @@ module.exports = withPWA({
             }
         ],
         unoptimized: true,
-    }
+    },
+    experimental: {
+        nextScriptWorkers: true,
+    },
 })

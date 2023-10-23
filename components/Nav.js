@@ -13,7 +13,7 @@ export default function Nav({ className, searchValue }) {
             <Image
               priority={true}
               desktopSrc={"/logo.png"}
-              desktopSize={[160, 96]}
+              desktopSize={[320, 160]}
               alt='Logo'
               className='w-40 h-20'
             />

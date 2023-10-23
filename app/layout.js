@@ -1,4 +1,3 @@
-//import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react';
 import { Partytown } from '@builder.io/partytown/react';
 import { Inter } from 'next/font/google'
@@ -34,6 +33,7 @@ export default function RootLayout({ children }) {
     <html lang="tr">
       <head>
         <link rel="preconnect" href="https://googleads.g.doubleclick.net"/>
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com/"></link>
         <Script id='gtag' async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP" type="text/partytown"></Script>
         <Script id='gtag-script' type="text/partytown">
           {`
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-6RL141V2EP');
           `}
         </Script>
-        <Partytown forward={['dataLayer.push']} />
+        <Partytown/>
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
         <link preload="true" rel="icon" href="/favicon.ico" sizes="any"/>
@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.jpg" type="image/jpg"/>
         <meta name="google-adsense-account" content="ca-pub-3609867447779558"/>
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossOrigin="anonymous" type="text/partytown"></Script>
+        <Script strategy="lazyOnload" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossOrigin="anonymous"></Script>
       </head>
       <body className={inter.className}>
         {children}
