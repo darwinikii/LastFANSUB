@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-6RL141V2EP');
           `}
         </script>
-        <Partytown debug={true} forward={['dataLayer.push']} />
+        <Partytown forward={['dataLayer.push']} />
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
         <link preload="true" rel="icon" href="/favicon.ico" sizes="any"/>
