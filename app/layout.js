@@ -1,8 +1,9 @@
-import Script from 'next/script'
+//import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react';
 import { Partytown } from '@builder.io/partytown/react';
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'], display: "swap" })
 
@@ -33,8 +34,8 @@ export default function RootLayout({ children }) {
     <html lang="tr">
       <head>
         <link rel="preconnect" href="https://googleads.g.doubleclick.net"/>
-        <script id='gtag' async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP" type="text/partytown"></script>
-        <script id='gtag-script' type="text/partytown">
+        <Script id='gtag' async src="https://www.googletagmanager.com/gtag/js?id=G-6RL141V2EP" type="text/partytown"></Script>
+        <Script id='gtag-script' type="text/partytown">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -42,7 +43,7 @@ export default function RootLayout({ children }) {
 
             gtag('config', 'G-6RL141V2EP');
           `}
-        </script>
+        </Script>
         <Partytown forward={['dataLayer.push']} />
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#000000"/>
@@ -51,7 +52,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.jpg" type="image/jpg"/>
         <meta name="google-adsense-account" content="ca-pub-3609867447779558"/>
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossorigin="anonymous" type="text/partytown"></script>
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossOrigin="anonymous" type="text/partytown"></Script>
       </head>
       <body className={inter.className}>
         {children}
