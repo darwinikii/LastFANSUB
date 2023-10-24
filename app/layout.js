@@ -52,6 +52,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.jpg" type="image/jpg"/>
         <meta name="google-adsense-account" content="ca-pub-3609867447779558"/>
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />
+        <meta name="yandex-verification" content="002567d7ff4d7034" />
         <Script strategy="lazyOnload" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossOrigin="anonymous"></Script>
       </head>
       <body className={inter.className}>
