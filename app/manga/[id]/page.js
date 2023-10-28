@@ -13,10 +13,14 @@ export async function generateMetadata({ params }) {
   try {
     var data = await (await fetch('https://lastfansub.vercel.app/api/manga/' + params.id)).json()
 
+    var names = data.name.split(" ").length == 1 ? [data.name] : [...data.name.split(" "), data.name]
+    if (data["fullName"] != "") names.push(data["fullName"])
+    if (data["secName"] != "") names.push(data["secName"]) 
+
     return {
       title: "LastFANSUB - " + data.name,
       description: data.name + " Manga oku. " + data.name + " ve daha fazla light noveli ve mangayı Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
-      keywords: [...data.name.split(" "), data.name, 'Novel', 'Manga', 'Oku', 'Türkçe', 'last fansub', 'last', 'fansub', 'lastfansub', 'lastsub', 'Noveller', 'Okumak için Kitap', 'Light Novel', 'oku light novel', 'Light novel çeviri', 'Ücretsiz Kitap Online', 'Novels Online'],
+      keywords: [...names, 'Novel', 'Manga', 'Oku', 'Türkçe', 'last fansub', 'last', 'fansub', 'lastfansub', 'lastsub', 'Noveller', 'Okumak için Kitap', 'Light Novel', 'oku light novel', 'Light novel çeviri', 'Ücretsiz Kitap Online', 'Novels Online'],
       colorScheme: 'dark',
       robots: {
         index: true,
