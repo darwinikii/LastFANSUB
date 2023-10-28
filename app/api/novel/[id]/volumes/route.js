@@ -15,18 +15,18 @@ export async function GET(req, { params }) {
   if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "volumes"))) {
     fs.mkdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes"))
   }
-  var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes")).filter(f => !f.startsWith('.'))
-  volumes.sort(function(a, b){return a - b})
+  var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes")).filter(f => !f.startsWith('.')).sort(function(a, b){return b - a;});
 
   volumes.forEach((volume) => {
     if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", volume, "chapters"))) return
-    var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", volume, "chapters")).filter(f => !f.startsWith('.'))
+    var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", volume, "chapters")).filter(f => !f.startsWith('.')).sort((a, b) => a.split(".")[0] - b.split(".")[0])
 
     chapters.forEach((chapter) => {
         if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", volume, "chapters", chapter))) return
         chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", volume, "chapters", chapter)))
 
-        chapterList.push("Cilt " + volume + " Bölüm " + chapter.id + " - " + chapter.name)
+        if (chapter["override"]) chapterList.push(chapter.override + chapter.name)
+        else chapterList.push("Cilt " + volume + " Bölüm " + chapter.id + " - " + chapter.name)
         basicList.push(volume + "-" + chapter.id)
     })
   })
