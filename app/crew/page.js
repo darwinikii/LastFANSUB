@@ -22,7 +22,7 @@ export default function Page() {
                                     chunchun
                                 </h1>
                                 <h2>
-                                    (Çevirmen)
+                                    (Çevirmen & Editör)
                                 </h2>
                             </div>
                         </div>
@@ -32,7 +32,7 @@ export default function Page() {
                                     darwinikii
                                 </h1>
                                 <h2>
-                                    (Geliştirici)
+                                    (Geliştirici & Çevirmen)
                                 </h2>
                             </div>
                         </div>
