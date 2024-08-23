@@ -6,7 +6,7 @@ const ChapterSection = dynamic(() => import('/components/ChapterSection'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function ChapterSectionList({ id }) {
+export default function ChapterSectionList({ classname, id }) {
     var { data, error, isLoading } = useSWR('/api/manga/' + id, fetcher);
     if (!data) return
 
@@ -18,7 +18,7 @@ export default function ChapterSectionList({ id }) {
     )
 
     return (
-      <div>
+      <div className={classname}>
         {list}
       </div>
     )

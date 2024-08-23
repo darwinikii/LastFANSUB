@@ -10,7 +10,6 @@ export const metadata = {
   title: 'LastFANSUB',
   description: 'LastFANSUB olarak, en sevdiğiniz light novel’leri Türkçe’ye çeviriyoruz. Sitemizde, fantastik dünyaların kapılarını aralayacak, heyecan dolu maceralara atılacak ve unutulmaz karakterlerle tanışacaksınız. Her bir hikaye, özenle çevrilmiş ve okuyucularımızın zevkine sunulmuştur. LastFANSUB’da, her bir sayfanın sizi yeni bir dünyaya taşımasına izin verin.',
   keywords: ['Novel', 'Manga', 'Oku', 'Türkçe', 'last fansub', 'last', 'fansub', 'lastfansub', 'lastsub', 'Noveller', 'Okumak için Kitap', 'Light Novel', 'oku light novel', 'Light novel çeviri', 'Ücretsiz Kitap Online', 'Novels Online'],
-  colorScheme: 'dark',
   robots: {
     index: true,
     follow: true
@@ -26,6 +25,10 @@ export const metadata = {
     ]
   },
   metadataBase: new URL("https://lastfansub.vercel.app")
+}
+
+export const viewport = {
+  themeColor: 'black'
 }
 
 export default function RootLayout({ children }) {
@@ -55,7 +58,7 @@ export default function RootLayout({ children }) {
         <meta name="yandex-verification" content="002567d7ff4d7034" />
         <Script strategy="lazyOnload" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossOrigin="anonymous"></Script>
       </head>
-      <body className={inter.className}>
+      <body className={inter.className + " flex justify-center w-full"} style={{backgroundColor: "#16151d"}}>
         {children}
         <Analytics/>
       </body>

@@ -1,9 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Nav from "/components/Nav"
-import SerieCard from "/components/SerieCard"
 import useSWR from 'swr';
+import dynamic from 'next/dynamic'
 
+const SerieCard = dynamic(() => import('/components/SerieCard'))
+const Nav = dynamic(() => import('/components/Nav'))
+const Search = dynamic(() => import('/components/Search'))
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page({ searchParams }) {
@@ -18,27 +20,34 @@ export default function Page({ searchParams }) {
   var list = data.map((e, i) => {
     return <SerieCard
       key={i}
-      name={e.name}
-      shortname={e.shortname}
-      id={e.id}
-      type={e.type}
+      names={e["names"]}
+      shortname={e["shortname"]}
+      id={e["id"]}
+      type={e["type"]}
     />
   })
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
-      <Nav searchValue={searchParams["q"]} className='z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex'/>
+    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
+      <Nav
+        className="flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl"
+      />
 
-      <h2 className="mt-10 text-4xl font-semibold">
-        Arama Sonuçları
-      </h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 border-gray-300 from-zinc-200 p-2 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border bg-gray-200 bg-zinc-800/30">
-        {list}
-      </div>
-      
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-
+      <div className='flex flex-col justify-center m-16 w-11/12'>
+      <Search
+          className="flex w-full rounded-3xl bg-white mb-5 drop-shadow-xl"
+          value={searchParams["q"]}
+        />
+      <div className="w-full rounded-3xl drop-shadow-xl" style={{backgroundColor: "#222"}}>
+            <div className='flex w-full justify-center items-center text-3xl font-bold m-6'>
+                <h1>Arama Sonuçları</h1>
+            </div>
+            <div className='grid grid-cols-3'>
+                {
+                    list
+                }
+            </div>
+        </div>
       </div>
     </main>
   )

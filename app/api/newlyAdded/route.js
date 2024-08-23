@@ -2,14 +2,10 @@ import fs from "fs"
 import path from "path";
 
 export async function GET() {
-    var novels = fs.readdirSync(path.join(process.cwd(), "data", "bin")).filter(f => !f.startsWith('.')).slice(-4).reverse()
-
-    novels.forEach((e, i) => {
-      var data = fs.readFileSync(path.join(process.cwd(), "data", "bin", e, "data.json"))
-      novels[i] = JSON.parse(data.toString())
-    })
+    var series = fs.readdirSync(path.join(process.cwd(), "data", "bin"))
+      .filter(f => !f.startsWith('.'))
+      .map((e, i) => JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", e, "data.json"))))
+      .sort((a, b) => b[["updateTimestamp"]] - a["updateTimestamp"])    
   
-    return new Response(JSON.stringify({
-        novels
-    }))
+    return new Response(JSON.stringify(series, null, 2))
   }

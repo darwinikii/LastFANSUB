@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import fs from 'fs'
 import path from 'path'
@@ -11,25 +10,31 @@ const Markdown = dynamic(() => import('/components/MarkdownParse'))
 
 export async function generateMetadata({ params }) {
   try {
-    var data = await (await fetch('https://lastfansub.vercel.app/api/manga/' + params.id)).json()
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "data.json"))) throw new Error("No data found")
+    var data = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "data.json")))
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "chapters"))) var chapters = []
+    else var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "chapters")).filter(f => !f.startsWith('.')).sort((a, b) => parseFloat(a) - parseFloat(b))
 
-    var names = data.name.split(" ").length == 1 ? [data.name] : [...data.name.split(" "), data.name]
-    if (data["fullName"] != "") names.push(data["fullName"])
-    if (data["secName"] != "") names.push(data["secName"]) 
+    data["chapters"] = []
+    chapters.reverse().forEach((e) => {
+      var chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "chapters", e)))
+      if (chapter["enabled"] == false) return
+
+      data["chapters"].push(chapter)
+    })
 
     return {
-      title: "LastFANSUB - " + data.name,
-      description: data.name + " Manga oku. " + data.name + " ve daha fazla light noveli ve mangayı Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
-      keywords: [...names, 'Novel', 'Manga', 'Oku', 'Türkçe', 'last fansub', 'last', 'fansub', 'lastfansub', 'lastsub', 'Noveller', 'Okumak için Kitap', 'Light Novel', 'oku light novel', 'Light novel çeviri', 'Ücretsiz Kitap Online', 'Novels Online'],
-      colorScheme: 'dark',
+      title: "LastFANSUB - " + data["names"][0],
+      description: data["names"][0] + " Manga oku. " + data["names"][0] + " ve daha fazla light noveli ve mangayı Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
+      keywords: [...data["names"], 'Novel', 'Manga', 'Oku', 'Türkçe', 'last fansub', 'last', 'fansub', 'lastfansub', 'lastsub', 'Noveller', 'Okumak için Kitap', 'Light Novel', 'oku light novel', 'Light novel çeviri', 'Ücretsiz Kitap Online', 'Novels Online'],
       robots: {
         index: true,
         follow: true
       },
       openGraph: {
-        title: "LastFANSUB - " + data.name,
+        title: "LastFANSUB - " + data["names"][0],
         siteName: 'LastFANSUB',
-        description: data.name + " Manga oku. " + data.name + " ve daha fazla light noveli ve mangayı Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
+        description: data["names"][0] + " Manga oku. " + data["names"][0] + " ve daha fazla light noveli ve mangayı Türkçe bir şekilde LastFANSUB ile okuyabilirsiniz.",
         url: 'https://lastfansub.vercel.app/manga/' + data.id,
         type: 'website',
         images: [
@@ -43,7 +48,6 @@ export async function generateMetadata({ params }) {
       title: 'LastFANSUB',
       description: 'LastFANSUB olarak, en sevdiğiniz light novel’leri Türkçe’ye çeviriyoruz. Sitemizde, fantastik dünyaların kapılarını aralayacak, heyecan dolu maceralara atılacak ve unutulmaz karakterlerle tanışacaksınız. Her bir hikaye, özenle çevrilmiş ve okuyucularımızın zevkine sunulmuştur. LastFANSUB’da, her bir sayfanın sizi yeni bir dünyaya taşımasına izin verin.',
       keywords: ['Novel', 'Manga', 'Oku', 'Türkçe', 'last fansub', 'last', 'fansub', 'lastfansub', 'lastsub', 'Noveller', 'Okumak için Kitap', 'Light Novel', 'oku light novel', 'Light novel çeviri', 'Ücretsiz Kitap Online', 'Novels Online'],
-      colorScheme: 'dark',
       robots: {
         index: true,
         follow: true
@@ -63,14 +67,29 @@ export async function generateMetadata({ params }) {
   }
 }
 
+export const viewport = {
+  themeColor: 'black'
+}
+
 async function getMangaData(params) {
   try {
-    var data = await (await fetch("https://lastfansub.vercel.app/api/manga/" + params.id)).json();
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "data.json"))) throw new Error("No data found")
+    var data = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "data.json")))
+    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "chapters"))) var chapters = []
+    else var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "chapters")).filter(f => !f.startsWith('.')).sort((a, b) => parseFloat(a) - parseFloat(b))
+
+    data["chapters"] = []
+    chapters.reverse().forEach((e) => {
+      var chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "chapters", e)))
+      if (chapter["enabled"] == false) return
+
+      data["chapters"].push(chapter)
+    })
 
     const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      name: data.name,
+      name: data["names"][0],
       image: data.image,
       description: data.description,
       review: {
@@ -92,7 +111,7 @@ async function getMangaData(params) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-  )
+    )
   } catch (error) {
     return null;
   }
@@ -100,7 +119,7 @@ async function getMangaData(params) {
 
 export async function generateStaticParams() {
   if (!fs.existsSync(path.join(process.cwd(), "data", "mangas"))) return []
-  var novels = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function(a, b){return a - b})
+  var novels = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function (a, b) { return a - b })
 
   return novels.map(e => { id: e.id })
 }
@@ -109,51 +128,44 @@ export default async function Page({ params }) {
   var data = await getMangaData(params)
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-x-hidden">
+    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
       {data}
-      <Nav className='left-0 top-0 z-10 w-full items-center justify-between font-mono text-sm lg:flex'/>
+      <Nav className='flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl' />
 
-      <div className="rounded-xl w-full lg:max-w-4xl mt-4 flex border-gray-300 from-zinc-200 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
+      <div className="flex flex-col justify-center w-11/12">
         <DataSection
           id={params.id}
-          type={"manga"}
+          type="manga"
+          className="flex p-5 w-full rounded-3xl drop-shadow-xl mb-10"
+          style={{ backgroundColor: "#222" }}
         />
-      </div>
-      <div className="flex justify-center w-full mt-2">
-            <Link
-              href={"/manga/" + params.id + "/read"}
-              className="flex justify-center block lg:hidden w-full inline-flex cursor-pointer group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-neutral-800/30"
-            >
-              <h2 className={`text-2xl font-semibold`}>
-                Oku{' '}
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                  -&gt;
-                </span>
-              </h2>
-            </Link>
+
+        <div className="flex flex-col p-5 w-full rounded-3xl drop-shadow-xl mb-10" style={{ backgroundColor: "#222" }}>
+          <div className="flex w-full justify-center items-center text-3xl font-bold mb-5">
+            <h1>Açıklama</h1>
           </div>
+          <div>
+            <Markdown
+              url={"/api/manga/" + params.id}
+              callback="description"
+            />
+          </div>
+        </div>
 
-      <h2 className="mt-10 mb-5 text-xl lg:text-4xl font-semibold">
-        Açıklama
-      </h2>
-      <div className="max-w-4xl mb-10 p-4 w-full rounded-lg flex border-gray-300 from-zinc-200 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
-        <Markdown
-          url={"/api/novel/" + params.id}
-          callback="description"
-        />
-      </div> 
-      <h2 className="mb-2 lg:mb-6 text-xl lg:text-4xl font-semibold">
-        Bölümler
-      </h2>
-      <div className="max-w-4xl w-full mb-5 grid border-gray-300 from-zinc-200 p-2 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border bg-gray-200 bg-zinc-800/30">
-        <ChapterSectionList 
-          id={params.id}
-        />
-      </div>
+        <div className="flex flex-col p-5 w-full rounded-3xl drop-shadow-xl mb-10" style={{ backgroundColor: "#222" }}>
+          <div className="flex w-full justify-center items-center text-3xl font-bold mb-5">
+            <h1>Bölümler</h1>
+          </div>
+          <ChapterSectionList
+            id={params.id}
+            className=""
+          />
+        </div>
 
-      <div className="mt-10 w-full lg:max-w-4xl">
         <Disqus
-          id={"n" + params.id}
+          id={"m" + params.id}
+          className="drop-shadow-xl rounded-3xl p-5"
+          style={{ backgroundColor: "#222" }}
         />
       </div>
     </main>

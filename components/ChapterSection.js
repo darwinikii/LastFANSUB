@@ -12,16 +12,16 @@ export default function ChapterSection({ id, chapterID }) {
     if (!data) return
 
     return (
-      <Link href={"/manga/" + id + "/chapter/" + chapterID} className="p-2 flex mt-2 mb-2 cursor-pointer hover:backdrop-blur-2xl hover:border-neutral-800 hover:bg-zinc-800/30 hover:from-inherit hover:rounded-xl hover:bg-gray-200 hover:bg-zinc-800/30">
+      <Link href={"/manga/" + id + "/chapter/" + chapterID} className="w-full flex p-5">
         <Image
           priority={true}
           desktopSrc={data.image}
           desktopSize={[160, 240]}
           mobileSize={[144, 208]}
           alt='Logo'
-          className="self-center w-36 h-52 md:w-40 md:h-60"
+          className="mx-5 rounded-lg"
         />
-        <div className="ml-2 mr-2 lg:ml-10 lg:mr-10">
+        <div className="w-full">
           <h2 className="flex ml-1 mt-2 text-lg lg:text-3xl font-semibold">
             {"Bölüm " + data.id + " - " + data.name}
           </h2>
