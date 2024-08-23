@@ -31,14 +31,14 @@ export default function MangaReader({ className, style, id, chap }) {
     if (type == "Manga") {
         var list = pages.map((page, index) => {
             return (
-                <div className='' key={index}>
+                <div key={index}>
                     <Image
                         priority={true}
                         desktopSrc={"/pages/" + mangaData["shortname"] + "/" + chap + "/" + page}
                         desktopSize={[1115, 1600]}
                         mobileSize={[700, 1005]}
                         alt='Logo'
-                        className='rounded-lg'
+                        className="rounded-3xl"
                     />
                 </div>
             )
@@ -46,7 +46,7 @@ export default function MangaReader({ className, style, id, chap }) {
 
         return (
             <div className={className} style={style}>
-                <Carousel dynamicHeight={true} swipeable={true} emulateTouch={true} showThumbs={false} useKeyboardArrows={true} width="100%" showIndicators={false} className='flex justify-evenly w-screen'>
+                <Carousel dynamicHeight={true} swipeable={true} emulateTouch={true} showThumbs={false} useKeyboardArrows={true} width="100%" showIndicators={false} className='flex rounded-3xl justify-evenly w-screen'>
                     {list}
                 </Carousel>
             </div>

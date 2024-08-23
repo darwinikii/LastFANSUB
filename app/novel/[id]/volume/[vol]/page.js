@@ -36,7 +36,7 @@ export default function Page({ params }) {
           id={params.id}
           vol={params.vol}
           type={"novel"}
-          className="flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center mb-10"
+          className="flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center xl:items-start mb-10"
           style={{ backgroundColor: "#222" }}
         />
 

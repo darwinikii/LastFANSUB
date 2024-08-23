@@ -20,7 +20,7 @@ export default function Tags({ className }) {
               return (
                 <Link
                   href={`/search?q=${tag}`}
-                  className={'text-black xl:text-lg xl:block flex justify-center items-center p-4 w-full rounded-3xl truncate ...' + (index >= 6 ? " hidden" : "")}
+                  className={'text-black xl:text-lg xl:flex justify-center items-center p-4 w-full rounded-3xl truncate ...' + (index >= 6 ? " hidden" : "")}
                   key={index}
                   style={{
                     backgroundColor: "#FCD041"
