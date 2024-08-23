@@ -18,7 +18,7 @@ export default function Nav({ className }) {
       </Link>
 
       <div className="w-full flex justify-center xl:justify-end items-center">
-        <Link href="/search?q=+" className="text-white hover:underline mx-7">
+        <Link href="/search?q= " className="text-white hover:underline mx-7">
           Seriler
         </Link>
         <Link href="/discord" className="text-white hover:underline mx-7">

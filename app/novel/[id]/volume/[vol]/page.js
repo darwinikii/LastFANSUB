@@ -28,15 +28,15 @@ export async function generateStaticParams() {
 
 export default function Page({ params }) {
   return (
-    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
-      <Nav className='flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl' />
+    <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
+      <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
-      <div className="flex flex-col justify-center w-11/12">
+      <div className="flex flex-col justify-center my-5 w-11/12">
         <DataSection
           id={params.id}
           vol={params.vol}
           type={"novel"}
-          className="flex p-5 w-full rounded-3xl drop-shadow-xl mb-10"
+          className="flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center mb-10"
           style={{ backgroundColor: "#222" }}
         />
 
@@ -44,7 +44,7 @@ export default function Page({ params }) {
           <div className="flex w-full justify-center items-center text-3xl font-bold mb-5">
             <h1>Bölümler</h1>
           </div>
-          <div className="flex flex-col list-disc ml-4 items-center">
+          <div className="flex flex-col list-disc items-center">
             <ChapterList
               id={params.id}
               vol={params.vol}

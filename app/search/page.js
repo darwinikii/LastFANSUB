@@ -28,21 +28,21 @@ export default function Page({ searchParams }) {
   })
 
   return (
-    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
+    <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
       <Nav
-        className="flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl"
+        className="flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl"
       />
 
-      <div className='flex flex-col justify-center m-16 w-11/12'>
+      <div className='flex flex-col justify-center my-5 xl:m-16 w-11/12'>
       <Search
           className="flex w-full rounded-3xl bg-white mb-5 drop-shadow-xl"
           value={searchParams["q"]}
         />
       <div className="w-full rounded-3xl drop-shadow-xl" style={{backgroundColor: "#222"}}>
-            <div className='flex w-full justify-center items-center text-3xl font-bold m-6'>
+            <div className='flex w-full justify-center items-center text-3xl font-bold my-3 xl:m-6'>
                 <h1>Arama Sonuçları</h1>
             </div>
-            <div className='grid grid-cols-3'>
+            <div className='grid xl:grid-cols-3'>
                 {
                     list
                 }

@@ -30,28 +30,39 @@ export async function generateStaticParams() {
 export default function Page({ params }) {
 
   return (
-    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
-      <Nav className='flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl' />
+    <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
+      <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
-      <div className="flex flex-col justify-center w-11/12">
+      <div className="flex flex-col justify-center my-5 xl:m-16 w-11/12">
         <MangaControlBar
           id={params.id}
           chap={params.chap}
-          className="flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          style={{ backgroundColor: "#222" }}
+        />
+        <MangaControlBarMobile
+          id={params.id}
+          chap={params.chap}
+          className="block xl:hidden w-full p-3 rounded-3xl"
           style={{ backgroundColor: "#222" }}
         />
 
         <MangaReader
           id={params.id}
           chap={params.chap}
-          className="flex justify-center items-center w-full rounded-3xl drop-shadow-xl p-5 my-10"
-          style={{ backgroundColor: "#222" }}
+          className="flex justify-center items-center w-full rounded-3xl drop-shadow-xl my-5 xl:my-10"
         />
 
+        <MangaControlBarMobile
+          id={params.id}
+          chap={params.chap}
+          className="block xl:hidden w-full p-3 rounded-3xl"
+          style={{ backgroundColor: "#222" }}
+        />
         <MangaControlBar
           id={params.id}
           chap={params.chap}
-          className="flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
           style={{ backgroundColor: "#222" }}
         />
 

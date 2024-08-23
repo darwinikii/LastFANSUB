@@ -37,30 +37,45 @@ export async function generateStaticParams() {
 
 export default function Page({ params }) {
   return (
-    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
-      <Nav className='flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl' />
+    <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
+      <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
-      <div className="flex flex-col justify-center w-11/12">
+      <div className="flex flex-col justify-center my-5 xl:m-16 w-11/12">
         <NovelControlBar
           id={params.id}
           vol={params.vol}
           chap={params.chap}
-          className="flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          style={{ backgroundColor: "#222" }}
+        />
+        <NovelControlBarMobile
+          id={params.id}
+          vol={params.vol}
+          chap={params.chap}
+          className="w-full xl:hidden rounded-3xl p-3"
           style={{ backgroundColor: "#222" }}
         />
 
-        <div className='w-full my-10 p-5 rounded-3xl text-lg' style={{ backgroundColor: "#222" }}>
+        <div className='w-full my-5 xl:my-10 p-5 rounded-3xl text-lg' style={{ backgroundColor: "#222" }}>
           <MarkdownParse
             url={'/api/novel/' + params.id + "/volumes/" + params.vol + "/chapters/" + params.chap}
             callback="markdown"
           />
         </div>
 
+        <NovelControlBarMobile
+          id={params.id}
+          vol={params.vol}
+          chap={params.chap}
+          className="w-full xl:hidden rounded-3xl p-3"
+          style={{ backgroundColor: "#222" }}
+        />
+
         <NovelControlBar
           id={params.id}
           vol={params.vol}
           chap={params.chap}
-          className="flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
           style={{ backgroundColor: "#222" }}
         />
 

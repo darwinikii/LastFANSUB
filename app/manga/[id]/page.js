@@ -128,15 +128,15 @@ export default async function Page({ params }) {
   var data = await getMangaData(params)
 
   return (
-    <main className="w-full max-w-screen-2xl rounded-3xl m-16 flex flex-col items-center">
+    <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
       {data}
-      <Nav className='flex w-11/12 justify-between bg-gray-950 rounded-3xl m-10 p-8 drop-shadow-xl' />
+      <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
-      <div className="flex flex-col justify-center w-11/12">
+      <div className="flex flex-col justify-center my-5 w-11/12">
         <DataSection
           id={params.id}
           type="manga"
-          className="flex p-5 w-full rounded-3xl drop-shadow-xl mb-10"
+          className="flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center mb-10"
           style={{ backgroundColor: "#222" }}
         />
 
