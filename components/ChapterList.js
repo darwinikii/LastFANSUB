@@ -20,7 +20,7 @@ export default function ChapterList({ className, id, vol }) {
   );
 
   return (
-        <ul className="list-disc ml-4 flex flex-col">
+        <ul className={className}>
             {list}
         </ul>
   )

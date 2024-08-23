@@ -11,10 +11,10 @@ const MangaReader = dynamic(() => import('/components/MangaReader'))
 export async function generateStaticParams() {
   if (!fs.existsSync(path.join(process.cwd(), "data", "mangas"))) return []
   var params = [];
-  var mangas = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function(a, b){return a - b})
+  var mangas = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function (a, b) { return a - b })
   mangas.forEach(manga => {
     if (!fs.existsSync(path.join(process.cwd(), "data", "bin", manga, "chapters"))) return
-    var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", manga, "chapters")).sort(function(a, b){return a - b})
+    var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", manga, "chapters")).sort(function (a, b) { return a - b })
     chapters.forEach(chapter => {
       params.push({
         id: manga.id,
@@ -30,43 +30,46 @@ export async function generateStaticParams() {
 export default function Page({ params }) {
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 overflow-hidden">
-      <Nav className='z-10 w-full xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-lg w-full items-center justify-between font-mono text-sm lg:flex'/>
+    <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
+      <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
-      <div className="w-full xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-lg mt-10 flex justify-around border-gray-300 before:-z-20 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30 before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 after:from-sky-900 after:via-[#0141ff] after:opacity-40 before:lg:h-[360px]">
+      <div className="flex flex-col justify-center my-5 xl:m-16 w-11/12">
         <MangaControlBar
-            id={params.id}
-            chap={params.chap}
+          id={params.id}
+          chap={params.chap}
+          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          style={{ backgroundColor: "#222" }}
         />
-      </div>
-      <div className="block lg:hidden w-full mt-2 flex justify-around border-gray-300 before:-z-20 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
-          <MangaControlBarMobile
-            id={params.id}
-          />
-      </div>
-
-      <div className="w-full xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-lg mt-10 mb-2 border-gray-300 from-zinc-200 p-2 lg:pb-6 lg:pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
-        <MangaReader
-            id={params.id}
-            chap={params.chap}
-        />
-      </div>
-
-      <div className="w-full xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-lg w-full lg:max-w-4xl mt-2 flex justify-around border-gray-300 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
-        <MangaControlBar
-            id={params.id}
-            chap={params.chap}
-        />
-      </div>
-      <div className="block lg:hidden w-full mt-2 flex justify-around border-gray-300 from-zinc-200 p-4 lg:pb-6 lg:pt-6 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static rounded-xl lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
         <MangaControlBarMobile
-            id={params.id}
+          id={params.id}
+          chap={params.chap}
+          className="block xl:hidden w-full p-3 rounded-3xl"
+          style={{ backgroundColor: "#222" }}
         />
-      </div>
 
-      <div className="w-full xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-lg mt-10 w-full rounded-xl lg:max-w-4xl">
+        <MangaReader
+          id={params.id}
+          chap={params.chap}
+          className="flex justify-center items-center w-full rounded-3xl drop-shadow-xl my-5 xl:my-10"
+        />
+
+        <MangaControlBarMobile
+          id={params.id}
+          chap={params.chap}
+          className="block xl:hidden w-full p-3 rounded-3xl"
+          style={{ backgroundColor: "#222" }}
+        />
+        <MangaControlBar
+          id={params.id}
+          chap={params.chap}
+          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          style={{ backgroundColor: "#222" }}
+        />
+
         <Disqus
           id={"m" + params.id + "c" + params.chap}
+          className="drop-shadow-xl rounded-3xl p-5 mt-10"
+          style={{ backgroundColor: "#222" }}
         />
       </div>
     </main>

@@ -35,7 +35,7 @@ function containsAll() {
         }
     }
     return(output);
-}    
+}
 
 export async function GET(request) {
     if (request.nextUrl.searchParams.has("text") == true) {
@@ -43,16 +43,26 @@ export async function GET(request) {
         var text = request.nextUrl.searchParams.get("text")
         
         var textTags = tags.filter(e => text.toLowerCase().includes(e.toLowerCase()))
-        var textContent = removeArrayContentsFromString(text, textTags);
-        
+        var textTypes = text.toLowerCase().split(" ").map(e => e == "manga" || e == "novel" ? e : false).filter(e => e != false)
+        var textContent = removeArrayContentsFromString(text, [...textTags, ...textTypes]);
+
         var series = []
 
         textTags = textTags.map(tag => fs.readdirSync(path.join(process.cwd(), "data", "tags", tag)))
         textTags = !textTags[0] ? [fs.readdirSync(path.join(process.cwd(), "data", "bin"))] : textTags
         series = containsAll(...textTags)
         series = series.map(serie => JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", serie, "data.json"))))
-        series = series.filter(serie => textContent.split(" ").map(key => key == '' || serie.shortname.toLowerCase().includes(key.toLowerCase()) || serie.name.toLowerCase().includes(key.toLowerCase()) || serie.fullName.toLowerCase().includes(key.toLowerCase()) || serie.secName.toLowerCase().includes(key.toLowerCase())).includes(true))
-    
+        series = series
+            .filter(serie => 
+                textContent
+                    .toLowerCase()
+                    .split(" ")
+                    .map(key => key = '' || serie["shortname"].toLowerCase().includes(key) || serie["names"].map(e => e.toLowerCase().includes(key)).includes(true))
+                    .includes(true)
+            )
+        if (textTypes.length >= 1) series = series.filter(serie => textTypes.includes(serie.type.toLowerCase()));
+        
+
         return new Response(JSON.stringify(series, null, 2))
     } else {
         return new Response(JSON.stringify({

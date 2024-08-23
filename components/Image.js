@@ -6,12 +6,12 @@ export default function ImageWrapper({ className, desktopSrc, mobileSrc, desktop
     const size = useWindowSize();
 
     var imgSize, imgSrc
-    if ((size && size.width > 1024) || !mobileSize || !mobileSrc) {
+    if (size && size.width > 1024) {
       imgSize = desktopSize
       imgSrc = desktopSrc
     } else {
-      imgSize = mobileSize
-      imgSrc = mobileSrc
+      imgSize = mobileSize || desktopSize
+      imgSrc = mobileSrc || desktopSrc
     }
 
     return (

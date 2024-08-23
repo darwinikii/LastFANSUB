@@ -6,7 +6,7 @@ const VolumeCard = dynamic(() => import('/components/VolumeCard'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function VolumeList({ id }) {
+export default function VolumeList({ className, id }) {
   var { data, error, isLoading } = useSWR('/api/novel/' + id, fetcher);
   if (error) return <div>Hata</div>
   if (!data || isLoading) return <div>Yükleniyor</div>
@@ -19,11 +19,12 @@ export default function VolumeList({ id }) {
         id={data.id}
         key={data.id}
         vol={volume.id}
+        className="flex flex-col items-center"
       />
     );
 
   return (
-      <div>
+      <div className={className}>
         {volumes}
       </div>
     )

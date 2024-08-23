@@ -9,7 +9,7 @@ const Image = dynamic(() => import('../components/Image'))
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function MangaReader({ id, chap }) {
+export default function MangaReader({ className, style, id, chap }) {
     function useData(url) {
         const { data, error, isLoading } = useSWR(url, fetcher);
 
@@ -31,28 +31,30 @@ export default function MangaReader({ id, chap }) {
     if (type == "Manga") {
         var list = pages.map((page, index) => {
             return (
-                    <div className='' key={index}>
-                        <Image
-                            priority={true}
-                            desktopSrc={"/pages/" + mangaData["shortname"] + "/" + chap + "/" + page}
-                            desktopSize={[1115, 1600]}
-                            mobileSize={[700, 1005]}
-                            alt='Logo'
-                            className='self-center w-screen'
-                        />
-                    </div>
-                )
+                <div key={index}>
+                    <Image
+                        priority={true}
+                        desktopSrc={"/pages/" + mangaData["shortname"] + "/" + chap + "/" + page}
+                        desktopSize={[1115, 1600]}
+                        mobileSize={[700, 1005]}
+                        alt='Logo'
+                        className="rounded-3xl"
+                    />
+                </div>
+            )
         })
-    
+
         return (
-            <Carousel dynamicHeight={true} swipeable={true} emulateTouch={true} showThumbs={false} useKeyboardArrows={true} width="100%" showIndicators={false} className='flex justify-evenly w-screen'>
-                {list}
-            </Carousel>
+            <div className={className} style={style}>
+                <Carousel dynamicHeight={true} swipeable={true} emulateTouch={true} showThumbs={false} useKeyboardArrows={true} width="100%" showIndicators={false} className='flex rounded-3xl justify-evenly w-screen'>
+                    {list}
+                </Carousel>
+            </div>
         )
     } else if (type == "Webtoon") {
         var list = pages.map((page, index) => {
             return (
-                <Image 
+                <Image
                     key={index}
                     className='w-full h-auto'
                     desktopSrc={"/pages/" + mangaData["shortname"] + "/" + chap + "/" + page}
@@ -63,8 +65,10 @@ export default function MangaReader({ id, chap }) {
         });
 
         return (
-            <div>
-                {list}
+            <div className={className} style={style}>
+                <div>
+                    {list}
+                </div>
             </div>
         )
     }
