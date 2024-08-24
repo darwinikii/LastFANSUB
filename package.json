@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run partytown && next build",
+    "build": "npm run onceBuild && npm run partytown && next build",
     "start": "next start",
     "lint": "next lint",
-    "partytown": "partytown copylib public/~partytown"
+    "partytown": "partytown copylib public/~partytown",
+    "onceBuild": "node onceBuild.js"
   },
   "dependencies": {
     "@builder.io/partytown": "0.10.2",

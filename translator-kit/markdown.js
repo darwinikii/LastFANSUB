@@ -1,6 +1,13 @@
-var markdown = ``;
+var markdown = 
+``;
 
-markdown = markdown.replaceAll("\n\n", "\n\r &nbsp; \n\r")
+markdown = markdown
+.replaceAll("\n\n", "\n\r &nbsp; \n\r")
+.replaceAll(`‘`, `'`)
+.replaceAll(`’’`, `"`)
+.replaceAll(`’`, `'`)
+.replaceAll(`“`, `"`)
+.replaceAll(`”`, `"`)
 
 // Markdown kodunu bir JSON objesine ekleyin
 var data = {
