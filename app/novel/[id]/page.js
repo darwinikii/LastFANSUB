@@ -71,53 +71,6 @@ export const viewport = {
   themeColor: 'black'
 }
 
-async function getNovelData(params) {
-  try {
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "data.json"))) throw new Error("No data found")
-    var data = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "data.json")))
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "chapters"))) var chapters = []
-    else var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "chapters")).filter(f => !f.startsWith('.')).sort((a, b) => parseFloat(a) - parseFloat(b))
-
-    data["chapters"] = []
-    chapters.reverse().forEach((e) => {
-      var chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "chapters", e)))
-      if (chapter["enabled"] == false) return
-
-      data["chapters"].push(chapter)
-    })
-
-    const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: data["names"][0],
-      image: data.image,
-      description: data.description,
-      review: {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5,
-          "bestRating": 5
-        },
-        "author": {
-          "@type": "Person",
-          "name": data.author.name
-        }
-      }
-    }
-
-    return (
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-    )
-  } catch (e) {
-    return null
-  }
-
-}
-
 export async function generateStaticParams() {
   if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
   var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function (a, b) { return a - b })
@@ -126,11 +79,8 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }) {
-  var data = await getNovelData(params);
-
   return (
     <main className="w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center">
-      {data}
       <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
       <div className="flex flex-col justify-center my-5 w-11/12">
