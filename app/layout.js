@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 import { Partytown } from '@builder.io/partytown/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script';
@@ -57,6 +58,7 @@ export default function RootLayout({ children }) {
         <meta name="google-site-verification" content="d2_4MWCSUycrRLTnBlWNXZHBV7ww97YS6vBy5PgDyxE" />
         <meta name="yandex-verification" content="002567d7ff4d7034" />
         <Script strategy="lazyOnload" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609867447779558" crossOrigin="anonymous"></Script>
+        <SpeedInsights/>
       </head>
       <body className={inter.className + " flex justify-center w-full"} style={{backgroundColor: "#16151d"}}>
         {children}
