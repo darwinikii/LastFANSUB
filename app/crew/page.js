@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 
 const Nav = dynamic(() => import('/components/Nav'))
-const Image = dynamic(() => import('/components/Image'))
 
 export default function Page() {
     return (

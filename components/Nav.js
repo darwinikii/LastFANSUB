@@ -8,7 +8,7 @@ export default function Nav({ className }) {
 
   return (
     <div className={className}>
-      <Link href="/" className="w-full flex justify-center xl:justify-start mb-4">
+      <Link href="/" className="w-full flex justify-center xl:justify-start mb-4 xl:mb-0">
         <Image
           priority={true}
           desktopSrc={"/logo.png"}
