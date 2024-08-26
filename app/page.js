@@ -5,14 +5,15 @@ const Search = dynamic(() => import('../components/Search'))
 const Tags = dynamic(() => import('../components/Tags'))
 const Types = dynamic(() => import('../components/Types'))
 const NewlyAdded = dynamic(() => import('../components/NewlyAdded'))
+const Breadcrumb = dynamic(() => import('../components/Breadcrumb'))
 
 export default function Page() {
 
   return (
     <main 
     className='w-full max-w-screen-2xl rounded-3xl xl:m-16 flex flex-col items-center'
-    
     >
+      <Breadcrumb/>
       <Nav
         className="flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl"
       />
