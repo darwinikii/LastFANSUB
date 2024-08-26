@@ -1,7 +1,6 @@
 import './style.css'
 import dynamic from 'next/dynamic'
-import fs from 'fs'
-import path from 'path'
+import Database from '@/src/Database'
 
 const Disqus = dynamic(() => import('/components/Disqus'))
 const Nav = dynamic(() => import('/components/Nav'))
@@ -9,28 +8,29 @@ const NovelControlBar = dynamic(() => import('/components/NovelControlBar'))
 const NovelControlBarMobile = dynamic(() => import('/components/NovelControlBarMobile'))
 const MarkdownParse = dynamic(() => import('/components/MarkdownParse'))
 
-export async function generateStaticParams() {
-  if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
-  var params = [];
-  var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function (a, b) { return a - b })
-  novels.forEach(novel => {
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes"))) return
-    var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes")).sort(function (a, b) { return a - b })
+export function generateStaticParams() {
+  var params = []
+  const series = Database.novel.all()
+    .map(e => ({
+      "id": `${e}`,
+      "volumes": Database.novel.volume.all(e)
+      .map(r => ({
+        "id": `${r}`,
+        "chapters": Database.novel.chapter.all(e, r)
+      }))
+    }))
 
-    volumes.forEach(volume => {
-      if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes", volume, "chapters"))) return
-      var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes", volume, "chapters"), { withFileTypes: false }).map(e => e.split(".")[0]).sort(function (a, b) { return a - b })
-
-      chapters.forEach(chapter => {
+  series.forEach((serie) => {
+    serie["volumes"].forEach((volume) => {
+      volume["chapters"].forEach((chapter) => {
         params.push({
-          id: novel,
-          vol: volume,
-          chap: chapter
-        })
-      })
-    })
-  })
-
+          "id": `${serie["id"]}`,
+          "vol": `${volume["id"]}`,
+          "chap": `${chapter}`
+        });
+      });
+    });
+  });
 
   return params
 }

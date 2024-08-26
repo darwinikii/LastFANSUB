@@ -1,28 +1,31 @@
-import fs from 'fs'
-import path from 'path'
+import Database from "@/src/Database";
+const domain = "https://lastfansub.vercel.app/"
 
-export async function generateStaticParams() {
-    if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
-    var params = [];
-    var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function(a, b){return a - b})
-    novels.forEach(novel => {
-      if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes"))) return
-      var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes")).sort(function(a, b){return a - b})
-      volumes.forEach(volume => {
-        params.push({
-          id: novel.id,
-          vol: volume
-        })
+export function generateStaticParams() {
+  var params = []
+  const series = Database.novel.all()
+    .map(e => ({
+      "id": `${e}`,
+      "volumes": Database.novel.volume.all(e)
+    }))
+
+  series.forEach((serie) => {
+    serie["volumes"].forEach((volume) => {
+      params.push({
+        "id": `${serie["id"]}`,
+        "vol": `${volume}`
       })
-    })
-  
-  
-    return params
-  }
+    });
+  });
+
+  return params
+}
 
 export async function GET(req, { params }) {
-    var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "volumes", params.vol, "chapters"))
-    if (!chapters[0]) return Response.redirect("https://lastfansub.vercel.app/not-found/")
+  if (!params || !params["id"] || isNaN(parseFloat(params["id"]))) return Response.redirect(new URL("/not-found/", domain))
+  if (!params || !params["vol"] || isNaN(parseFloat(params["vol"]))) return Response.redirect(new URL("/not-found/", domain))
+  const list = Database.novel.chapter.all(parseFloat(params["id"]), parseFloat(params["vol"]))
 
-    return Response.redirect("https://lastfansub.vercel.app/novel/" + params.id + "/volume/" + params.vol + "/chapter/" + chapters[0].split(".")[0])
+  if (list.length > 0) return Response.redirect(new URL("/novel/" + params["id"] + "/volume/" +  params["vol"] + "/chapter/" + list[0], domain))
+  else return Response.redirect(new URL("/not-found/", domain))
 }

@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
-import fs from 'fs'
-import path from 'path'
+import Database from '@/src/Database'
 
 const Disqus = dynamic(() => import('/components/Disqus'))
 const Nav = dynamic(() => import('/components/Nav'))
@@ -71,11 +70,8 @@ export const viewport = {
   themeColor: 'black'
 }
 
-export async function generateStaticParams() {
-  if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
-  var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function (a, b) { return a - b })
-
-  return novels.map(e => { id: e.id })
+export function generateStaticParams() {
+  return Database.novel.all().map(e => ({ "id": `${e}` }));
 }
 
 export default async function Page({ params }) {

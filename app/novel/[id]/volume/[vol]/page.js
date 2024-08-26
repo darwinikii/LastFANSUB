@@ -1,27 +1,27 @@
 import dynamic from 'next/dynamic'
-import fs from 'fs'
-import path from 'path'
+import Database from '@/src/Database'
 
 const ChapterList = dynamic(() => import('/components/ChapterList'))
 const Nav = dynamic(() => import('/components/Nav'))
 const VolumeDataSection = dynamic(() => import('/components/VolumeDataSection'))
 const Markdown = dynamic(() => import('/components/MarkdownParse'))
 
-export async function generateStaticParams() {
-  if (!fs.existsSync(path.join(process.cwd(), "data", "novels"))) return []
-  var params = [];
-  var novels = fs.readdirSync(path.join(process.cwd(), "data", "novels")).sort(function (a, b) { return a - b })
-  novels.forEach(novel => {
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", novel, "volumes"))) return
-    var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", novel, "volumes")).sort(function (a, b) { return a - b })
-    volumes.forEach(volume => {
-      params.push({
-        id: novel.id,
-        vol: volume
-      })
-    })
-  })
+export function generateStaticParams() {
+  var params = []
+  const series = Database.novel.all()
+    .map(e => ({
+      "id": `${e}`,
+      "volumes": Database.novel.volume.all(e)
+    }))
 
+  series.forEach((serie) => {
+    serie["volumes"].forEach((volume) => {
+      params.push({
+        "id": `${serie["id"]}`,
+        "vol": `${volume}`
+      })
+    });
+  });
 
   return params
 }

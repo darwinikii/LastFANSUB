@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
-import fs from 'fs'
-import path from 'path'
+import Database from '@/src/Database'
 
 const Disqus = dynamic(() => import('/components/Disqus'))
 const Nav = dynamic(() => import('/components/Nav'))
@@ -9,20 +8,21 @@ const MangaControlBarMobile = dynamic(() => import('/components/MangaControlBarM
 const MangaReader = dynamic(() => import('/components/MangaReader'))
 
 export async function generateStaticParams() {
-  if (!fs.existsSync(path.join(process.cwd(), "data", "mangas"))) return []
-  var params = [];
-  var mangas = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function (a, b) { return a - b })
-  mangas.forEach(manga => {
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", manga, "chapters"))) return
-    var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", manga, "chapters")).sort(function (a, b) { return a - b })
-    chapters.forEach(chapter => {
-      params.push({
-        id: manga.id,
-        chap: chapter
-      })
-    })
-  })
+  var params = []
+  const series = Database.manga.all()
+    .map(e => ({
+      "id": e,
+      "chapters": Database.manga.chapter.all(e)
+    }))
 
+  series.forEach((serie) => {
+    serie["chapters"].forEach((chapter) => {
+      params.push({
+        "id": `${serie["id"]}`,
+        "chap": `${chapter}`
+      })
+    });
+  });
 
   return params
 }
