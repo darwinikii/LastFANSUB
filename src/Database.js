@@ -176,7 +176,7 @@ const Database = {
                 });
             });
 
-            return chapters.slice(-4).toReversed()
+            return (chapters || []).slice(-4).toReversed()
         },
         volume: {
             default: (id) => {
