@@ -1,0 +1,21 @@
+.discover-button {
+    color: #FCD041;
+    border-color: #FCD041;
+ }
+
+ .discover-button:hover {
+    color: #222;
+    background-color: #FCD041;
+ }
+
+ @media (min-width: 1280px) {
+
+     .types > div > .types-image {
+         filter: saturate(0);
+     }
+
+     .types:hover > div > .types-image {
+         filter: saturate(1);
+     }
+
+ }

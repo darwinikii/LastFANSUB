@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import useSWR from "swr"
+import './Tags.css'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -20,11 +21,8 @@ export default function Tags({ className }) {
               return (
                 <Link
                   href={`/search?q=${tag}`}
-                  className={'text-black xl:text-lg xl:flex justify-center items-center p-4 w-full rounded-3xl truncate ...' + (index >= 6 ? " hidden" : "")}
+                  className={'tag text-black xl:text-lg xl:flex justify-center items-center p-4 w-full rounded-3xl ease-out duration-300 truncate ...' + (index >= 6 ? " hidden" : "")}
                   key={index}
-                  style={{
-                    backgroundColor: "#FCD041"
-                  }}
                 >
                   {tag}
                 </Link>

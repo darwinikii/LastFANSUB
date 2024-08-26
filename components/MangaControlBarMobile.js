@@ -8,17 +8,11 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function MangaControlBarMobile({ className, style, id, chap }) {
   const router = useRouter()
-  var { data, error, isLoading } = useSWR('/api/manga/' + id + '/chapters/', fetcher);
+  var { data, error, isLoading } = useSWR('/api/manga/' + id + '/chapter/fetch', fetcher);
 
   if (!data) return <div>Loading</div>
 
-  var list = data.list.map(element => {
-    return createElement("option", {
-      selected: element.id == chap,
-      key: element.id,
-      chapter: element.id
-    }, "Bölüm " + element.id + " - " + element.name)
-  })
+  const list = data.map((chapter, i) => (<option selected={chapter["id"] == chap} key={i} chapter={chapter["id"]}>{"Bölüm " + chapter["id"] + " - " + chapter["name"]}</option>))
 
   function handleOnChange(e) {
     var elm = e.target.options[e.target.selectedIndex]

@@ -4,7 +4,7 @@ import path from 'path'
 
 const ChapterList = dynamic(() => import('/components/ChapterList'))
 const Nav = dynamic(() => import('/components/Nav'))
-const DataSection = dynamic(() => import('/components/DataSection'))
+const VolumeDataSection = dynamic(() => import('/components/VolumeDataSection'))
 const Markdown = dynamic(() => import('/components/MarkdownParse'))
 
 export async function generateStaticParams() {
@@ -32,7 +32,7 @@ export default function Page({ params }) {
       <Nav className='flex flex-col xl:flex-row w-full xl:w-11/12 justify-between bg-gray-950 xl:rounded-3xl xl:m-10 p-8 drop-shadow-xl' />
 
       <div className="flex flex-col justify-center my-5 w-11/12">
-        <DataSection
+        <VolumeDataSection
           id={params.id}
           vol={params.vol}
           type={"novel"}
@@ -59,7 +59,7 @@ export default function Page({ params }) {
           </div>
           <div className="flex flex-col list-disc ml-4 items-center">
             <Markdown
-              url={'/api/novel/' + params.id + '/volumes/' + params.vol}
+              url={'/api/novel/' + params.id + '/volume/' + params.vol}
               callback={"synopsis"}
             />
           </div>

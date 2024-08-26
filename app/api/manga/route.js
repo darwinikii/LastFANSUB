@@ -1,10 +1,7 @@
-import { notFound } from 'next/navigation'
-import fs from "fs"
-import path from "path";
+import Database from '@/src/Database'
 
 export async function GET(req) {
-  if (!fs.existsSync(path.join(process.cwd(), "data", "mangas"))) return notFound()
-  var mangas = fs.readdirSync(path.join(process.cwd(), "data", "mangas")).sort(function(a, b){return a - b})
+  const mangaIdList = Database.manga.all()
 
-  return new Response(JSON.stringify(mangas, null, 2))
+  return Response.json(mangaIdList)
 }

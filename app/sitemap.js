@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import Database from "@/src/Database";
 var domain = 'lastfansub.vercel.app'
 
 export default function sitemap() {
-    var dataFolder = fs.readdirSync(path.join(process.cwd(), "data", "bin"))
+    var series = Database.all();
 
     var sites = [
       {
@@ -14,40 +13,42 @@ export default function sitemap() {
       }
     ];
 
-    dataFolder.forEach(dataId => {
-        if (!fs.existsSync(path.join(process.cwd(), "data", "bin", dataId, "data.json"))) return
-        var data = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", dataId, "data.json")));
+    series.forEach(dataId => {
+        var data = Database.get(dataId);
 
-        sites.push({
-            url: "https://" + domain + "/" + data.type.toLowerCase() + "/" + data.id.toString(),
+        if (data["type"] == 0) {
+          sites.push({
+            url: "https://" + domain + "/novel/" + data["id"].toString(),
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 0.9,
           })
-
-        if (data.type == "Novel") {
-          if (!fs.existsSync(path.join(process.cwd(), "data", "bin", dataId, "volumes"))) return
-          var volumes = fs.readdirSync(path.join(process.cwd(), "data", "bin", dataId, "volumes"))
+          var volumes = Database.novel.volume.all(dataId);
 
           volumes.forEach(volumeId => {
-            var volume = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", dataId, "volumes", volumeId, "data.json")));
+            var volume = Database.novel.volume.get(dataId, volumeId);
 
             sites.push({
-              url: "https://" + domain + "/" + data.type.toLowerCase() + "/" + data.id.toString() + "/volume/" + volume.id,
+              url: "https://" + domain + "/novel/" + data["id"].toString() + "/volume/" + volume["id"].toString(),
               lastModified: new Date(),
               changeFrequency: 'daily',
               priority: 0.8,
             })
           });
-        } else if (data.type == "Manga") {
-          if (!fs.existsSync(path.join(process.cwd(), "data", "bin", dataId, "chapters"))) return
-          var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", dataId, "chapters"))
+        } else if (data["type"] == 1) {
+          sites.push({
+            url: "https://" + domain + "/manga/" + data["id"].toString(),
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9,
+          })
+          var chapters = Database.manga.chapter.all(dataId);
 
           chapters.forEach(chapterId => {
-            var chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", dataId, "chapters", chapterId)));
+            var chapter = Database.manga.chapter.get(dataId, chapterId);
 
             sites.push({
-              url: "https://" + domain + "/" + data.type.toLowerCase() + "/" + data.id.toString() + "/chapter/" + chapter.id,
+              url: "https://" + domain + "/manga/" +  data["id"].toString() + "/chapter/" + chapter["id"].toString(),
               lastModified: new Date(),
               changeFrequency: 'daily',
               priority: 0.8,

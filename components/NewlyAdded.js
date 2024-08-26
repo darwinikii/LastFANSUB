@@ -1,6 +1,7 @@
 "use client";
 import useSWR from 'swr';
 import dynamic from 'next/dynamic'
+import './NewlyAdded.css'
 
 const SerieCard = dynamic(() => import('../components/SerieCard'))
 const fetcher = (url) => fetch(url, { next: { revalidate: 3600 } }).then((res) => res.json());
@@ -11,8 +12,8 @@ export default function Types({ className }) {
     if (!data || isLoading) return <div></div>
 
     return (
-        <div className={className} style={{backgroundColor: "#222"}}>
-            <div className='flex w-full justify-center items-center text-3xl font-bold m-6'>
+        <div className={className} style={{ backgroundColor: "#222" }}>
+            <div className='flex w-full justify-center items-center text-3xl font-bold my-4'>
                 <h1>Son Yüklenenler</h1>
             </div>
             <div className='grid grid-cols-1 xl:grid-cols-3'>
@@ -24,9 +25,8 @@ export default function Types({ className }) {
                                 id={serie["id"]}
                                 shortname={serie["shortname"]}
                                 names={serie["names"]}
-                                last={(serie["last"] || []).toReversed()}
-                                timestamp={serie["updateTimestamp"]}
-                                key={index + 1}
+                                lastChapters={serie["lastChapters"]}
+                                key={index}
                             />
                         })
                 }

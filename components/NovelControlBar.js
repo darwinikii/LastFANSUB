@@ -1,24 +1,20 @@
 "use client";
 import { useRouter } from "next/navigation";
 import useSWR from "swr"
-import { createElement } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function NovelControlBar({ className, style, id, vol, chap }) {
   const router = useRouter()
-  var { data, error, isLoading } = useSWR('/api/novel/' + id + '/volumes/', fetcher);
-
+  var { data, error, isLoading } = useSWR('/api/novel/' + id + '/volume/extend', fetcher);
   if (!data) return <div>Loading</div>
-
+  
   var list = []
-  data.chapterList.forEach((element, i) => {
-    var isSelected = data.basicList[i].split("-")[0] == vol && data.basicList[i].split("-")[1] == chap
-    list.push(createElement("option", {
-      selected: isSelected,
-      volume: data.basicList[i].split("-")[0],
-      chapter: data.basicList[i].split("-")[1]
-    }, element))
+
+  data.forEach((volume, i) => {
+    volume["chapters"].forEach((chapter, j)  => {
+      list.push(<option selected={volume["id"] == vol && chapter["id"] == chap} volume={volume["id"]} chapter={chapter["id"]} key={i + j}>{chapter["override"] ? `Cilt ${volume["id"]} ${chapter["override"]}${chapter["name"]}` : `Cilt ${volume["id"]} Bölüm ${chapter["id"]} - ${chapter["name"]}`}</option>)
+    });
   });
 
   function handleOnChange(e) {

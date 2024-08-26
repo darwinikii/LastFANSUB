@@ -27,7 +27,7 @@ export default function Page() {
         />
 
        <Types
-         className="w-full grid grid-cols-1 xl:grid-cols-2 gap-10 mb-10 drop-shadow-xl"
+         className="w-full grid grid-cols-1 xl:grid-cols-2 gap-10 mb-10 drop-shadow-2xl"
        />
 
        <NewlyAdded

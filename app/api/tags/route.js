@@ -1,10 +1,8 @@
-import { notFound } from 'next/navigation'
-import fs from "fs"
-import path from "path";
+import Database from "@/src/Database";
 
 export async function GET(req) {
-  if (!fs.existsSync(path.join(process.cwd(), "data", "tags"))) return notFound()
-  var tags = fs.readdirSync(path.join(process.cwd(), "data", "tags"))
+  const tags =
+    Database.tag.all()
 
-  return new Response(JSON.stringify(tags, null, 2))
+  return Response.json(tags);
 }
