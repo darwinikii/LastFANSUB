@@ -176,7 +176,7 @@ const Database = {
                 });
             });
 
-            return (chapters || []).slice(-4).reverse();
+            return chapters.slice(-4).reverse();
         },
         volume: {
             default: (id) => {
