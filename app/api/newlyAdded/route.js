@@ -1,7 +1,6 @@
 import Database from "@/src/Database"
 
 export async function GET() {
-  console.log("GET /api/newlyAdded/");
   const series = 
     Database.all()
     .map(e => Database.get(e))
