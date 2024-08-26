@@ -77,7 +77,7 @@ const Database = {
                 Database.manga.chapter.all(id)
                     .map(e => Database.manga.chapter.get(id, e))
                     .slice(-4)
-                    .toReversed()
+                    .reverse()
                     .map(e =>
                     ({
                         "chapter": e["id"],
