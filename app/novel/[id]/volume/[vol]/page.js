@@ -36,7 +36,7 @@ export default function Page({ params }) {
           id={params.id}
           vol={params.vol}
           type={"novel"}
-          className="flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center xl:items-start mb-10"
+          className="ease-out duration-300 flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center xl:items-start mb-10"
           style={{ backgroundColor: "#222" }}
         />
 
@@ -48,7 +48,7 @@ export default function Page({ params }) {
             <ChapterList
               id={params.id}
               vol={params.vol}
-              className="flex flex-col list-disc ml-4"
+              className="ease-out duration-300 flex flex-col list-disc ml-4"
             />
           </div>
         </div>

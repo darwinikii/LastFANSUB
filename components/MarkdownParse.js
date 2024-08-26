@@ -6,7 +6,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Disqus({ url, callback }) {
     var { data, error, isLoading } = useSWR(url, fetcher);
-    if (!data) return <a>Yükleniyor..</a>
+    if (!data) return <a></a>
 
     return (
         <Markdown>

@@ -37,32 +37,32 @@ export default function Page({ params }) {
         <MangaControlBar
           id={params.id}
           chap={params.chap}
-          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex ease-out duration-300 justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
           style={{ backgroundColor: "#222" }}
         />
         <MangaControlBarMobile
           id={params.id}
           chap={params.chap}
-          className="block xl:hidden w-full p-3 rounded-3xl"
+          className="block xl:hidden ease-out duration-300 w-full p-3 rounded-3xl"
           style={{ backgroundColor: "#222" }}
         />
 
         <MangaReader
           id={params.id}
           chap={params.chap}
-          className="flex justify-center items-center w-full rounded-3xl drop-shadow-xl my-5 xl:my-10"
+          className="ease-out duration-300 flex justify-center items-center w-full rounded-3xl drop-shadow-xl my-5 xl:my-10"
         />
 
         <MangaControlBarMobile
           id={params.id}
           chap={params.chap}
-          className="block xl:hidden w-full p-3 rounded-3xl"
+          className="block xl:hidden ease-out duration-300 w-full p-3 rounded-3xl"
           style={{ backgroundColor: "#222" }}
         />
         <MangaControlBar
           id={params.id}
           chap={params.chap}
-          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex ease-out duration-300 justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
           style={{ backgroundColor: "#222" }}
         />
 

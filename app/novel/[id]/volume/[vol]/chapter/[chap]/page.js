@@ -45,18 +45,18 @@ export default function Page({ params }) {
           id={params.id}
           vol={params.vol}
           chap={params.chap}
-          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex ease-out duration-300 justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
           style={{ backgroundColor: "#222" }}
         />
         <NovelControlBarMobile
           id={params.id}
           vol={params.vol}
           chap={params.chap}
-          className="w-full xl:hidden rounded-3xl p-3"
+          className="w-full xl:hidden ease-out duration-300 rounded-3xl p-3"
           style={{ backgroundColor: "#222" }}
         />
 
-        <div className='w-full my-5 xl:my-10 p-5 rounded-3xl text-lg' style={{ backgroundColor: "#222" }}>
+        <div className='ease-out duration-300 w-full my-5 xl:my-10 p-5 rounded-3xl text-lg' style={{ backgroundColor: "#222" }}>
           <MarkdownParse
             url={'/api/novel/' + params.id + "/volume/" + params.vol + "/chapter/" + params.chap}
             callback="markdown"
@@ -67,7 +67,7 @@ export default function Page({ params }) {
           id={params.id}
           vol={params.vol}
           chap={params.chap}
-          className="w-full xl:hidden rounded-3xl p-3"
+          className="w-full xl:hidden ease-out duration-300 rounded-3xl p-3"
           style={{ backgroundColor: "#222" }}
         />
 
@@ -75,7 +75,7 @@ export default function Page({ params }) {
           id={params.id}
           vol={params.vol}
           chap={params.chap}
-          className="hidden xl:flex justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
+          className="hidden xl:flex ease-out duration-300 justify-between items-center w-full relative rounded-3xl drop-shadow-xl p-5"
           style={{ backgroundColor: "#222" }}
         />
 

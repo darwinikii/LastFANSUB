@@ -83,7 +83,7 @@ export default async function Page({ params }) {
         <DataSection
           id={params.id}
           type="manga"
-          className="flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center mb-10"
+          className="ease-out duration-300 flex flex-col xl:flex-row p-5 w-full rounded-3xl drop-shadow-xl items-center mb-10"
           style={{ backgroundColor: "#222" }}
         />
 

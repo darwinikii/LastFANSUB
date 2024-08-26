@@ -18,7 +18,7 @@ export default function VolumeList({ className, id }) {
         id={id}
         key={index}
         vol={volume.id}
-        className="flex flex-col items-center"
+        className="flex flex-col items-center rounded-3xl p-5 ease-out duration-300 hover:bg-zinc-900"
       />
     );
 
