@@ -15,7 +15,7 @@ export default function Breadcrumb({ id, type }) {
                 items.push({
                     "@type": "ListItem",
                     "position": items.length + 1,
-                    "name": `Cilt ${vol["id"]} Bölüm ${chap["id"]} - ${chap["title"]}`,
+                    "name": `Cilt ${vol["id"]} Bölüm ${chap["id"]} - ${chap["name"]}`,
                     "item": domain + `novel/${id}/volume/${vol["id"]}/chapter/${chap["id"]}`
                 });
             })
