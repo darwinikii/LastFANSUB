@@ -1,6 +1,10 @@
 import Database from "@/src/Database"
 const domain = "https://lastfansub.vercel.app/"
 
+export function generateStaticParams() {
+    return Database.novel.all().map(e => ({ "id": `${e}` }));
+}
+
 export async function GET(req, { params }) {
     if (!params || !params["id"] || isNaN(parseFloat(params["id"]))) return Response.redirect(new URL("/not-found/", domain))
     const list = Database.novel.volume.all(params["id"])
