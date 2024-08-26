@@ -16,7 +16,7 @@ export default function Breadcrumb({ id, type }) {
                     "@type": "ListItem",
                     "position": items.length + 1,
                     "name": `Cilt ${vol["id"]} Bölüm ${chap["id"]} - ${chap["title"]}`,
-                    "url": domain + `novel/${id}/volume/${vol["id"]}/chapter/${chap["id"]}`
+                    "item": domain + `novel/${id}/volume/${vol["id"]}/chapter/${chap["id"]}`
                 });
             })
         })
@@ -27,7 +27,7 @@ export default function Breadcrumb({ id, type }) {
                 "@type": "ListItem",
                 "position": items.length + 1,
                 "name": `Bölüm ${chap["id"]} - ${chap["name"]}`,
-                "url": domain + `manga/${id}/chapter/${chap["id"]}`
+                "item": domain + `manga/${id}/chapter/${chap["id"]}`
             });
         });
     } else {
