@@ -9,18 +9,8 @@ const Markdown = dynamic(() => import('/components/MarkdownParse'))
 
 export async function generateMetadata({ params }) {
   try {
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "data.json"))) throw new Error("No data found")
-    var data = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "data.json")))
-    if (!fs.existsSync(path.join(process.cwd(), "data", "bin", params.id, "chapters"))) var chapters = []
-    else var chapters = fs.readdirSync(path.join(process.cwd(), "data", "bin", params.id, "chapters")).filter(f => !f.startsWith('.')).sort((a, b) => parseFloat(a) - parseFloat(b))
-
-    data["chapters"] = []
-    chapters.reverse().forEach((e) => {
-      var chapter = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", "bin", params.id, "chapters", e)))
-      if (chapter["enabled"] == false) return
-
-      data["chapters"].push(chapter)
-    })
+    if (!params || !params["id"] || isNaN(parseFloat(params["id"]))) throw new Error("Invalid ID")
+    const data = Database.get(parseFloat(params["id"]))
 
     return {
       title: "LastFANSUB - " + data["names"][0],
