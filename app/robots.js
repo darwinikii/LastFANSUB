@@ -4,7 +4,6 @@ export default function robots() {
         userAgent: '*',
         allow: '/',
       },
-      sitemap: 'https://lastfansub.vercel.app/sitemap.xml',
-      host: 'https://lastfansub.vercel.app/'
+      sitemap: 'https://lastfansub.vercel.app/sitemap.xml'
     }
   }
