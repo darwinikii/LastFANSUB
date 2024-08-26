@@ -14,7 +14,7 @@ export default function ChapterList({ className, id, vol }) {
         {chapter["override"] ? (chapter["override"] + chapter["name"]) : (`Bölüm ${chapter["id"]} - ${chapter["name"]}`)}
       </li>
     </Link>
-  ).toReversed();
+  ).reverse()
 
   return (
         <ul className={className}>
