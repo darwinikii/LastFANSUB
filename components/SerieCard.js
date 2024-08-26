@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const Image = dynamic(() => import('../components/Image'))
 
@@ -28,11 +28,13 @@ function timeDifference(current, previous) {
   }
 }
 
-export default function Card({ names, shortname, id, type, last, timestamp, key }) {
+export default function Card({ names, shortname, id, type, lastChapters, key }) {
+  const router = useRouter()
+
   return (
     <Link
-      className="flex items-center w-full p-5"
-      href={type == "Novel" ? "/novel/" + id : (type == "Manga" ? "/manga/" + id : "/not-found")}
+      href={(type == 0 ? "/novel/" + id : (type == 1 ? "/manga/" + id : "/not-found"))}
+      className="flex items-center w-full p-5 cursor-pointer xl:m-2 rounded-3xl ease-out duration-300 hover:bg-zinc-900"
     >
       <Image
         priority={true}
@@ -41,7 +43,7 @@ export default function Card({ names, shortname, id, type, last, timestamp, key 
         desktopSize={[128, 192]}
         mobileSize={[96, 144]}
         alt='Logo'
-        className="mx-3 xl:mx-5 rounded-lg"
+        className="mr-3 xl:mr-5 rounded-lg"
       />
       <div className='flex flex-col w-full h-full justify-between overflow-hidden'>
         <div className='flex flex-col'>
@@ -50,33 +52,37 @@ export default function Card({ names, shortname, id, type, last, timestamp, key 
           </h2>
           <div className='grid mb-2 xl:mb-0'>
             {
-              last ?
+              lastChapters ?
                 (
-                  last
-                  .map((e, i) => (<Link
-                    className={'flex justify-between text-sm font-medium text-black p-1 rounded-xl my-0.5' + (i >= 3 ? ' hidden xl:flex' : "")}
+                  lastChapters
+                  .map((e, i) => (<button
+                    className={'chapter-item flex justify-between text-sm font-medium text-black p-1 rounded-xl my-0.5 cursor-pointer ease-out duration-300' + (i >= 3 ? ' hidden xl:flex' : "")}
                     key={i}
-                    href={type == "Novel" ? `/novel/${id}/volume/${e["volume"]}/chapter/${e["chapter"]}` : (type == "Manga" ? `/manga/${id}/chapter/${e["chapter"]}` : "/not-found")}
-                    style={{ backgroundColor: "#FCD041" }}>
-                    {type == "Novel" ? `Cilt ${e["volume"]} Bölüm ${e["chapter"]}` : (type == "Manga" ? `Bölüm ${e["chapter"]}` : "")}
+                    href={(type == 0 ? `/novel/${id}/volume/${e["volume"]}/chapter/${e["chapter"]}` : (type == 1 ? `/manga/${id}/chapter/${e["chapter"]}` : "/not-found"))}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      router.push(e.currentTarget.attributes.getNamedItem('href').value);
+                    }}>
+                    {type == 0 ? `Cilt ${e["volume"]} Bölüm ${e["chapter"]}` : (type == 1 ? `Bölüm ${e["chapter"]}` : "")}
                     <span className='mx-0.5'>
                       {timeDifference(Date.now(), e["timestamp"])}
                     </span>
-                  </Link>
+                  </button>
                   ))
                 ) :
                 (<h3 className='text-lg font-medium'>
-                  {type}
+                  {type == 0 ? "Novel" : (type == 1 ? "Manga" : "")}
                 </h3>)
             }
           </div>
         </div>
         {
-          last ? (
+          lastChapters ? (
             <div className='flex justify-between'>
-              <span>{timeDifference(Date.now(), timestamp) + " önce"}</span>
+              <span>{timeDifference(Date.now(), lastChapters[0]["timestamp"]) + " önce"}</span>
               <span>
-                {type}
+                {type == 0 ? "Novel" : (type == 1 ? "Manga" : "")}
               </span>
             </div>
           ) : null

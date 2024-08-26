@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script';
+import { WebVitals } from '/components/WebVitals'
 
 const inter = Inter({ subsets: ['latin'], display: "swap" })
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
         <SpeedInsights/>
       </head>
       <body className={inter.className + " flex justify-center w-full"} style={{backgroundColor: "#16151d"}}>
+        <WebVitals/>
         {children}
         <Analytics/>
       </body>

@@ -8,7 +8,7 @@ const Image = dynamic(() => import('../components/Image'))
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ChapterSection({ id, chapterID }) {
-  var { data, error, isLoading } = useSWR('/api/manga/' + id + "/chapters/" + chapterID, fetcher);
+  var { data, error, isLoading } = useSWR('/api/manga/' + id + "/chapter/" + chapterID, fetcher);
   if (!data) return
 
   return (

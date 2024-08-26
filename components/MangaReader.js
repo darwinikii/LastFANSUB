@@ -21,9 +21,8 @@ export default function MangaReader({ className, style, id, chap }) {
     }
 
     var mangaData = useData("/api/manga/" + id, (data) => data);
-    var pages = useData("/api/manga/" + id + "/chapters/" + chap + "/pages");
+    var pages = useData("/api/manga/" + id + "/chapter/" + chap + "/pages");
     if (!pages) return <a>Yükleniyor..</a>
-    else pages = pages["pages"]
     if (!mangaData) return <a>Yükleniyor..</a>
 
     var type = getValue("type", "Manga")

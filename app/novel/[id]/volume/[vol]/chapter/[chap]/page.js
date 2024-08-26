@@ -58,7 +58,7 @@ export default function Page({ params }) {
 
         <div className='w-full my-5 xl:my-10 p-5 rounded-3xl text-lg' style={{ backgroundColor: "#222" }}>
           <MarkdownParse
-            url={'/api/novel/' + params.id + "/volumes/" + params.vol + "/chapters/" + params.chap}
+            url={'/api/novel/' + params.id + "/volume/" + params.vol + "/chapter/" + params.chap}
             callback="markdown"
           />
         </div>
