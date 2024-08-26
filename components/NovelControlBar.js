@@ -7,7 +7,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function NovelControlBar({ className, style, id, vol, chap }) {
   const router = useRouter()
   var { data, error, isLoading } = useSWR('/api/novel/' + id + '/volume/extend', fetcher);
-  if (!data) return <div>Loading</div>
+  if (!data) return <div className={className} style={style}></div>
   
   var list = []
 

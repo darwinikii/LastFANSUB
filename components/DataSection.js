@@ -14,7 +14,7 @@ export default function DataSection({ className, style, id, type }) {
   }
   var url = '/api/' + type + '/' + id
   var { data, error, isLoading } = useFetch(url)
-  if (!data) return <div>Yükleniyor</div>
+  if (!data) return <div></div>
 
   if (data["genre"]) var list = data["genre"].map((e, i) => {
     return (

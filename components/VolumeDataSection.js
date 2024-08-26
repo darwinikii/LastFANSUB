@@ -15,7 +15,7 @@ export default function DataSection({ className, style, id, vol, type }) {
 
   var url = `/api/${type}/${id}/volume/${vol}/extend` 
   var { data, error, isLoading } = useFetch(url);
-  if (!data) return <div>Yükleniyor</div>
+  if (!data) return <div></div>
 
   return (
     <div className={className} style={style}>

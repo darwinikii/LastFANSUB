@@ -10,7 +10,7 @@ export default function MangaControlBarMobile({ className, style, id, chap }) {
   const router = useRouter()
   var { data, error, isLoading } = useSWR('/api/manga/' + id + '/chapter/fetch', fetcher);
 
-  if (!data) return <div>Loading</div>
+  if (!data) return <div className={className} style={style}></div>
 
   const list = data.map((chapter, i) => (<option selected={chapter["id"] == chap} key={i} chapter={chapter["id"]}>{"Bölüm " + chapter["id"] + " - " + chapter["name"]}</option>))
 

@@ -12,7 +12,7 @@ export default function ChapterSection({ id, chapterID }) {
   if (!data) return
 
   return (
-    <Link href={"/manga/" + id + "/chapter/" + chapterID} className="w-full flex p-5">
+    <Link href={"/manga/" + id + "/chapter/" + chapterID} className="w-full flex p-5 rounded-3xl ease-out duration-300 hover:bg-zinc-900">
       <div className='mr-5'>
         <Image
           priority={true}

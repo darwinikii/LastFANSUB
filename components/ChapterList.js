@@ -9,7 +9,7 @@ export default function ChapterList({ className, id, vol }) {
   if (!data || isLoading) data = []
 
   const list = data.map((chapter, index) =>
-    <Link key={index} href={"/novel/" + id + "/volume/" + vol + "/chapter/" + chapter["id"]} className="cursor-pointer mt-1 mb-1">
+    <Link key={index} href={"/novel/" + id + "/volume/" + vol + "/chapter/" + chapter["id"]} className="cursor-pointer p-1 rounded-3xl ease-out duration-300 hover:bg-zinc-900">
       <li>
         {chapter["override"] ? (chapter["override"] + chapter["name"]) : (`Bölüm ${chapter["id"]} - ${chapter["name"]}`)}
       </li>
